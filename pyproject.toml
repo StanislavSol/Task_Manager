@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "hexlet-code"
+version = "0.1.0"
+description = "Task management system. It allows you to set tasks, assign performers and change their statuses. To work with the system, registration and authentication are required."
+authors = ["Solovtcov Stanislav <vandemar@bk.ru>"]
+readme = "README.md"
+packages = [{include = "task_manager"}]
+repository = "https://github.com/StanislavSol/python-project-52"
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.2.6"
+python-dotenv = "^1.0.0"
+dj-database-url = "^2.1.0"
+
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^6.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
