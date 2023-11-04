@@ -1,1 +1,22 @@
-<h1>Hello, {{ who }}!</h1>
+{% extends "layout.html" %}
+{% load i18n %}
+{% block content %}
+
+ <div class="container wrapper flex-grow-1">
+
+        <h1 class="my-4">
+
+
+        </h1>
+
+<h1 class="my-4"></h1>
+<div class="card">
+  <div class="card-body p-5 bg-light">
+    <div class="display-4">{% translate "Task manager" %}</div>
+    <p class="lead">{% translate "Task management system. It allows you to set tasks, assign performers and change their statuses. Registration and authentication are required to work with the system." %}</p>
+    <hr>
+    <a class="btn btn-primary btn-lg" href="https://github.com/StanislavSol/python-project-52">{% translate "Project page on GitHub" %}</a>
+  </div>
+</div>
+
+{% endblock %}

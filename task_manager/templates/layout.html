@@ -1,0 +1,14 @@
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+
+<!DOCTYPE html>
+<html lang="ru-ru">
+    {% include "components/header.html" %}
+  <body class="d-flex flex-column min-vh-100">
+      {% include "components/nav.html" %}
+      {% block content %}
+      {% endblock %}
+  </body>
+</html>    
