@@ -16,3 +16,4 @@ page_analyzer/.env
 *.swp
 *.env
 .build.sh
+staticfiles/
