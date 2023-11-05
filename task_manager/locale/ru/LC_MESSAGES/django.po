@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-04 20:08+0300\n"
+"POT-Creation-Date: 2023-11-05 15:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <vandemar@bk.ru>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,33 +20,33 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: templates/components/header.html:5 
-#: templates/index.html:15
+#: task_manager/templates/components/header.html:5
+#: task_manager/templates/index.html:15
 msgid "Task manager"
 msgstr "Менеджер задач"
 
-#: templates/components/nav.html:8
+#: task_manager/templates/components/nav.html:9
 msgid "Users"
 msgstr "Пользователи"
 
-#: templates/components/nav.html:15
+#: task_manager/templates/components/nav.html:16
 msgid "Entrance"
 msgstr "Вход"
 
-#: templates/components/nav.html:18
+#: task_manager/templates/components/nav.html:19
 msgid "Registration"
 msgstr "Регистрация"
 
-#: templates/index.html:16
+#: task_manager/templates/index.html:16
 msgid ""
 "Task management system. It allows you to set tasks, assign performers and "
 "change their statuses. Registration and authentication are required to work "
 "with the system."
 msgstr ""
-"Система управления задачами. Позволяет ставить задачи, назначать исполнителей и"
-"изменить свои статусы. Для работы необходима регистрация и аутентификация"
-"с системой."
+"Система управления задачами. Позволяет ставить задачи, назначать "
+"исполнителей иизменить свои статусы. Для работы необходима регистрация и "
+"аутентификация с системой."
 
-#: templates/index.html:18
+#: task_manager/templates/index.html:18
 msgid "Project page on GitHub"
 msgstr "Страница проекта на GitHub"
