@@ -18,8 +18,8 @@
       {% for user in users %}
       <tr>
           <td>{{ user.id }}</td>
-          <td>{{ user.name }}</td>
-          <td>{{ user.full_name }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.first_name }} {{ user.last_name }}</td>
           <td>{{ user.date_created }}</td>
         <td>
             <a href="/users/{{ user.id }}/update/">Изменить</a>

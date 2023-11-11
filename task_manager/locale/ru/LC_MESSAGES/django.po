@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-05 19:00+0300\n"
+"POT-Creation-Date: 2023-11-09 13:47+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <vandemar@bk.ru>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,7 @@ msgid "Entrance"
 msgstr "Вход"
 
 #: task_manager/templates/components/nav.html:19
+#: task_manager/templates/users/create.html:7
 msgid "Registration"
 msgstr "Регистрация"
 
@@ -52,7 +53,27 @@ msgstr ""
 msgid "Project page on GitHub"
 msgstr "Страница проекта на GitHub"
 
+#: task_manager/templates/users/create.html:13
+#, fuzzy
+#| msgid "Registration"
+msgid "Register"
+msgstr "Регистрация"
+
+#: task_manager/templates/users/delete.html:7
+msgid "Deleting a user"
+msgstr "Удаление пользователя"
+
+#: task_manager/templates/users/delete.html:8
+msgid "Are you sure you want to delete"
+msgstr "Вы уверены, что хотите удалить"
+
+#: task_manager/templates/users/delete.html:11
+msgid "Yes, delete"
+msgstr "Да, удалить"
+
 #: task_manager/templates/users/index.html:11
+#: task_manager/templates/users/layout_forms.html:13
+#: task_manager/templates/users/layout_forms.html:18
 msgid "Username"
 msgstr "Имя пользователя"
 
@@ -63,3 +84,45 @@ msgstr "Полное имя"
 #: task_manager/templates/users/index.html:13
 msgid "Date of creation"
 msgstr "Дата создания"
+
+#: task_manager/templates/users/layout_forms.html:3
+#: task_manager/templates/users/layout_forms.html:6
+msgid "Fist name"
+msgstr "Имя"
+
+#: task_manager/templates/users/layout_forms.html:8
+#: task_manager/templates/users/layout_forms.html:11
+msgid "Last name"
+msgstr "Фамилия"
+
+#: task_manager/templates/users/layout_forms.html:21
+msgid ""
+"Obligatory field. No more than 150 characters. Only letters, numbers and "
+"symbols @/./+/-/_."
+msgstr "Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./+/-/_."
+
+#: task_manager/templates/users/layout_forms.html:24
+#: task_manager/templates/users/layout_forms.html:27
+msgid "Password"
+msgstr "Пароль"
+
+#: task_manager/templates/users/layout_forms.html:30
+msgid "Your password must contain at least 3 characters."
+msgstr "Ваш пароль должен содержать как минимум 3 символа."
+
+#: task_manager/templates/users/layout_forms.html:33
+#: task_manager/templates/users/layout_forms.html:37
+msgid "Password confirmation"
+msgstr "Подтверждение пароля"
+
+#: task_manager/templates/users/layout_forms.html:40
+msgid "To confirm, please enter your password again."
+msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
+
+#: task_manager/templates/users/update.html:7
+msgid "Change user"
+msgstr "Изменение пользователя"
+
+#: task_manager/templates/users/update.html:13
+msgid "Change"
+msgstr "Изменить"

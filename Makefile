@@ -11,3 +11,15 @@ makemessages:
 .PHONY: compilemessages
 compilemessages:
 	poetry run django-admin compilemessages
+
+shell:
+	poetry run python manage.py shell
+
+makemigration:
+	poetry run python manage.py makemigrations
+
+migrate:
+	poetry run python manage.py migrate
+
+collectstatic:
+	poetry run python manage.py collectstatic
