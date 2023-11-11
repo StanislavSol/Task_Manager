@@ -1,10 +1,12 @@
+from django.contrib.auth import logout, login, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views import View
-from task_manager.users.models import User
-from task_manager.users.forms import UserRegistrationForm
-from django.contrib import messages
 from django.utils.translation import gettext as _
-from django.views.generic.edit import CreateView
+
+from .models import User
+from .forms import UserRegistrationForm     #, UserChangeForm
 
 
 class IndexView(View):
@@ -26,8 +28,25 @@ class CreateUserView(View):
             user_form.save()
             msg_text = _('User is successfully created')
             messages.success(request, msg_text) 
-            return redirect('users_index')
+            return redirect('users_login')
         return render(request, 'users/create.html', {'form': user_form})
+
+
+class LoginUserView(View):
+    def get(self, request, *args, **kwargs):
+        form = AuthenticationForm
+        return render(request, 'users/login.html', {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            auth.login(request, user)
+            messages.success(request, _('You are logged in'))
+            return redirect('index')
+        return render(request, 'users/login.html', {'form': form}) 
 
 
 class EditUserView(View):
@@ -40,7 +59,7 @@ class EditUserView(View):
                       {'form': form,
                        'user_id': user_id})
 
-class UserFormDeleteView(View):
+class DeleteUserView(View):
     def get(self, request, *args, **kwargs):
         user_id = kwargs.get('id')
         user = User.objects.get(id=user_id)
