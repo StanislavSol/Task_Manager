@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', False) == True
+DEBUG = False
 
 ALLOWED_HOSTS = [
         '*',
@@ -38,6 +38,7 @@ ALLOWED_HOSTS = [
         ]
 
 AUTH_USER_MODEL = 'users.User'
+
 
 # Application definition
 
@@ -103,20 +104,11 @@ DATABASES['default'].update(db_from_env)
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
+        {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
         'OPTIONS': {
                     'min_length': 3,
                     }
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
@@ -147,7 +139,6 @@ STATIC_URL = '/staticfiles/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-
 LOGIN_URL = 'login/'
 LOGOUT_URL = 'logout/'
 LOGIN_REDIRECT_URL = '/'
