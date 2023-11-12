@@ -4,21 +4,31 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+
         <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}">{% translate "Task manager" %}</a>
+            </li>
+
           <li class="nav-item">
               <a class="nav-link" href="{% url 'users_index' %}">{% translate "Users" %}</a>
           </li>
-
         </ul>
+        {% if request.user.is_authenticated %}
         <ul class="navbar-nav">
-
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'users_logout' %}">{% translate "Exit" %}</a>
+            </li>
+        </ul>
+        {% else %}
+        <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'users_login' %}">{% translate "Entrance" %}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'users_create' %}">{% translate "Registration" %}</a>
             </li>
-
         </ul>
+        {% endif %}
       </div>
     </nav>

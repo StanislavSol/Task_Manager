@@ -32,23 +32,6 @@ class CreateUserView(View):
         return render(request, 'users/create.html', {'form': user_form})
 
 
-class LoginUserView(View):
-    def get(self, request, *args, **kwargs):
-        form = AuthenticationForm
-        return render(request, 'users/login.html', {'form': form})
-
-    def post(self, request, *args, **kwargs):
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            auth.login(request, user)
-            messages.success(request, _('You are logged in'))
-            return redirect('index')
-        return render(request, 'users/login.html', {'form': form}) 
-
-
 class EditUserView(View):
     def get(self, request, *args, **kwargs):
         user_id = kwargs.get('id')
@@ -76,3 +59,25 @@ class DeleteUserView(View):
         if user:
             user.delete()
         return redirect('users_index')'''
+
+
+class LoginUserView(View):
+    def get(self, request, *args, **kwargs):
+        form = AuthenticationForm
+        return render(request, 'users/login.html', {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request, _('You are logged in'))
+            return redirect('index')
+        return render(request, 'users/login.html', {'form': form})
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('index')

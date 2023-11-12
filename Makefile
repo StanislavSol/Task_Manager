@@ -1,25 +1,23 @@
+PORT ?= 8000
+WEB_CONCURRENCY ?= 4
+
 install:
 	poetry install
 
-start:
-	poetry run python manage.py runserver 0.0.0.0:8000
+dev:
+	poetry run python manage.py runserver
 
-.PHONY: makemessages 
-makemessages:
-	poetry run django-admin makemessages -l ru
-
-.PHONY: compilemessages
-compilemessages:
-	poetry run django-admin compilemessages
+compile:
+	cd task_manager && poetry run django-admin makemessages -l ru && poetry run django-admin compilemessages --ignore=venv
 
 shell:
 	poetry run python manage.py shell
 
-makemigration:
-	poetry run python manage.py makemigrations
-
 migrate:
-	poetry run python manage.py migrate
+	poetry run python manage.py makemigrations && poetry run python manage.py migrate
 
 collectstatic:
 	poetry run python manage.py collectstatic
+	
+start:
+	poetry run gunicorn -w $(WEB_CONCURRENCY) -b 0.0.0.0:$(PORT) task_manager.wsgi:application

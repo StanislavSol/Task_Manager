@@ -30,7 +30,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+
+DEBUG = True
 
 ALLOWED_HOSTS = [
         '*',
@@ -142,4 +143,5 @@ STATIC_URL = '/staticfiles/'
 LOGIN_URL = 'login/'
 LOGOUT_URL = 'logout/'
 LOGIN_REDIRECT_URL = '/'
+#CSRF_TRUSTED_ORIGINS=["http://127.0.0.1:8000/", "https://127.0.0.1:8000/"]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
