@@ -34,7 +34,7 @@ class CreateUserView(View):
         return render(request, 'users/create.html', {'form': user_form})
 
 
-class EditUserView(View, UserRequiredMixin):
+class EditUserView(UserRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         user_id = kwargs.get('id')
         user = User.objects.get(id=user_id)
@@ -50,6 +50,8 @@ class EditUserView(View, UserRequiredMixin):
         form = UserEditForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
+            msg_text = _('User successfully changed')
+            messages.success(request, msg_text)
             return redirect('index')
 
         return render(request,
@@ -58,7 +60,7 @@ class EditUserView(View, UserRequiredMixin):
                       'user_id':user_id})
 
 
-class DeleteUserView(View):
+class DeleteUserView(UserRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         user_id = kwargs.get('id')
         user = User.objects.get(id=user_id)
@@ -66,7 +68,7 @@ class DeleteUserView(View):
         return render(request,
                       'users/delete.html',
                       context={'user_id': user_id,
-                          'full_username': full_username})
+                      'full_username': full_username})
 
 
     def post(self, request, *args, **kwargs):
@@ -74,6 +76,8 @@ class DeleteUserView(View):
         user = User.objects.get(id=user_id)
         if user:
             user.delete()
+            msg_text = _('User deleted successfully')
+            messages.success(request, msg_text)
             return redirect('users_index')
 
 
