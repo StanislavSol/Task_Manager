@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
@@ -6,7 +7,8 @@ from django.views import View
 from django.utils.translation import gettext as _
 
 from .models import User
-from .forms import UserRegistrationForm     #, UserChangeForm
+from .forms import UserRegistrationForm, UserEditForm
+from .mixins import UserRequiredMixin
 
 
 class IndexView(View):
@@ -32,15 +34,29 @@ class CreateUserView(View):
         return render(request, 'users/create.html', {'form': user_form})
 
 
-class EditUserView(View):
+class EditUserView(View, UserRequiredMixin):
     def get(self, request, *args, **kwargs):
         user_id = kwargs.get('id')
         user = User.objects.get(id=user_id)
-        form = UserRegistrationForm(instance=user)
+        form = UserEditForm(instance=user)
         return render(request,
                       'users/update.html',
                       {'form': form,
                        'user_id': user_id})
+
+    def post(self, request, *args, **kwargs):
+        user_id = kwargs.get('id')
+        user = User.objects.get(id=user_id)
+        form = UserEditForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+
+        return render(request,
+                     'users/update.html',
+                     {'form': form,
+                      'user_id':user_id})
+
 
 class DeleteUserView(View):
     def get(self, request, *args, **kwargs):
@@ -53,12 +69,12 @@ class DeleteUserView(View):
                           'full_username': full_username})
 
 
-        '''def post(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         user_id = kwargs.get('id')
-        user = Article.objects.get(id=article_id)
+        user = User.objects.get(id=user_id)
         if user:
             user.delete()
-        return redirect('users_index')'''
+            return redirect('users_index')
 
 
 class LoginUserView(View):
@@ -80,4 +96,5 @@ class LoginUserView(View):
 
 def logout_user(request):
     logout(request)
+    messages.info(request, _('You are logged out'))
     return redirect('index')

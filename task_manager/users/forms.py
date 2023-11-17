@@ -14,3 +14,13 @@ class UserRegistrationForm(UserCreationForm):
             'last_name',
             'username',
         ]
+
+
+class UserEditForm(UserChangeForm):
+    class Meta:
+        model = User
+        fields = [
+                'first_name',
+                'last_name',
+                'username'
+                ]
