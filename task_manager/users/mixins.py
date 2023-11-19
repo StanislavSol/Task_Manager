@@ -10,8 +10,8 @@ class UserRequiredMixin(AccessMixin):
             messages.error(request, _('You are not authorized! Please log in.'))
             return redirect('users_login')
         if request.user.is_authenticated:
-            if request.user != self.user_id:
+            user_id = kwargs.get('id')
+            if request.user.pk != user_id:
                 messages.error(request, _('You do not have permission to change another user.'))
                 return redirect('users_index')
-        print(request.user.is_authenticated)
         return super().dispatch(request, *args, **kwargs)

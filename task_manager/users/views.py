@@ -1,12 +1,14 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views import View
 from django.utils.translation import gettext as _
+from django.contrib.auth.models import User
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
 
-from .models import User
 from .forms import UserRegistrationForm, UserEditForm
 from .mixins import UserRequiredMixin
 
@@ -34,7 +36,12 @@ class CreateUserView(View):
         return render(request, 'users/create.html', {'form': user_form})
 
 
-class EditUserView(UserRequiredMixin, View):
+class EditUserView(UserRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = User
+    form_class = UserRegistrationForm
+    success_url = reverse_lazy('home_users')
+    success_message = _('User successfully changed')
+
     def get(self, request, *args, **kwargs):
         user_id = kwargs.get('id')
         user = User.objects.get(id=user_id)
