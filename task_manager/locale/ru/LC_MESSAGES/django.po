@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-09 13:47+0300\n"
+"POT-Creation-Date: 2023-11-20 19:10+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <vandemar@bk.ru>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,26 +20,29 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: task_manager/templates/components/header.html:5
-#: task_manager/templates/index.html:15
+#: templates/components/header.html:5 templates/components/nav.html:10
+#: templates/index.html:14
 msgid "Task manager"
 msgstr "Менеджер задач"
 
-#: task_manager/templates/components/nav.html:9
-#: task_manager/templates/users/index.html:6
+#: templates/components/nav.html:14 templates/users/index.html:6
 msgid "Users"
 msgstr "Пользователи"
 
-#: task_manager/templates/components/nav.html:16
+#: templates/components/nav.html:20
+msgid "Exit"
+msgstr "Выход"
+
+#: templates/components/nav.html:26 templates/users/login.html:6
+#: templates/users/login.html:19
 msgid "Entrance"
 msgstr "Вход"
 
-#: task_manager/templates/components/nav.html:19
-#: task_manager/templates/users/create.html:7
+#: templates/components/nav.html:29 templates/users/create.html:7
 msgid "Registration"
 msgstr "Регистрация"
 
-#: task_manager/templates/index.html:16
+#: templates/index.html:15
 msgid ""
 "Task management system. It allows you to set tasks, assign performers and "
 "change their statuses. Registration and authentication are required to work "
@@ -49,80 +52,128 @@ msgstr ""
 "исполнителей иизменить свои статусы. Для работы необходима регистрация и "
 "аутентификация с системой."
 
-#: task_manager/templates/index.html:18
+#: templates/index.html:17
 msgid "Project page on GitHub"
 msgstr "Страница проекта на GitHub"
 
-#: task_manager/templates/users/create.html:13
+#: templates/users/create.html:11
 #, fuzzy
 #| msgid "Registration"
 msgid "Register"
 msgstr "Регистрация"
 
-#: task_manager/templates/users/delete.html:7
+#: templates/users/delete.html:7
 msgid "Deleting a user"
 msgstr "Удаление пользователя"
 
-#: task_manager/templates/users/delete.html:8
+#: templates/users/delete.html:8
 msgid "Are you sure you want to delete"
 msgstr "Вы уверены, что хотите удалить"
 
-#: task_manager/templates/users/delete.html:11
+#: templates/users/delete.html:11
 msgid "Yes, delete"
 msgstr "Да, удалить"
 
-#: task_manager/templates/users/index.html:11
-#: task_manager/templates/users/layout_forms.html:13
-#: task_manager/templates/users/layout_forms.html:18
+#: templates/users/index.html:11 templates/users/layout_forms.html:24
+#: templates/users/layout_forms.html:29 templates/users/login.html:14
+#: templates/users/login.html:15
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: task_manager/templates/users/index.html:12
+#: templates/users/index.html:12
 msgid "Full username"
 msgstr "Полное имя"
 
-#: task_manager/templates/users/index.html:13
+#: templates/users/index.html:13
 msgid "Date of creation"
 msgstr "Дата создания"
 
-#: task_manager/templates/users/layout_forms.html:3
-#: task_manager/templates/users/layout_forms.html:6
+#: templates/users/layout_forms.html:4 templates/users/layout_forms.html:8
 msgid "Fist name"
 msgstr "Имя"
 
-#: task_manager/templates/users/layout_forms.html:8
-#: task_manager/templates/users/layout_forms.html:11
+#: templates/users/layout_forms.html:14 templates/users/layout_forms.html:18
 msgid "Last name"
 msgstr "Фамилия"
 
-#: task_manager/templates/users/layout_forms.html:21
-msgid ""
-"Obligatory field. No more than 150 characters. Only letters, numbers and "
-"symbols @/./+/-/_."
-msgstr "Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./+/-/_."
-
-#: task_manager/templates/users/layout_forms.html:24
-#: task_manager/templates/users/layout_forms.html:27
+#: templates/users/layout_forms.html:40 templates/users/layout_forms.html:44
+#: templates/users/login.html:17 users/forms.py:24
 msgid "Password"
 msgstr "Пароль"
 
-#: task_manager/templates/users/layout_forms.html:30
-msgid "Your password must contain at least 3 characters."
-msgstr "Ваш пароль должен содержать как минимум 3 символа."
-
-#: task_manager/templates/users/layout_forms.html:33
-#: task_manager/templates/users/layout_forms.html:37
+#: templates/users/layout_forms.html:51 templates/users/layout_forms.html:55
+#: users/forms.py:27
 msgid "Password confirmation"
 msgstr "Подтверждение пароля"
 
-#: task_manager/templates/users/layout_forms.html:40
-msgid "To confirm, please enter your password again."
-msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
-
-#: task_manager/templates/users/update.html:7
+#: templates/users/update.html:7
 msgid "Change user"
 msgstr "Изменение пользователя"
 
-#: task_manager/templates/users/update.html:13
+#: templates/users/update.html:12
 msgid "Change"
 msgstr "Изменить"
+
+#: users/forms.py:21
+msgid "The two password fields didn't match."
+msgstr "Два поля пароля не совпадают."
+
+#: users/forms.py:22
+#, fuzzy
+#| msgid ""
+#| "The entered password is too short. It must contain at least 3 characters."
+msgid ""
+"The entered password is too short. It must contain at least 3 characters."
+msgstr ""
+"Введенный пароль слишком короткий. Он должен содержать не менее 3 символов."
+
+#: users/forms.py:26
+msgid "Your password must contain at least 3 characters."
+msgstr "Ваш пароль должен содержать как минимум 3 символа."
+
+#: users/forms.py:29
+msgid "To confirm, please enter your password again."
+msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
+
+#: users/mixins.py:10
+msgid "You are not authorized! Please log in."
+msgstr "Вы не авторизованы! Пожалуйста, войдите в систему"
+
+#: users/mixins.py:15
+msgid "You do not have permission to change another user."
+msgstr "У вас нет разрешения на изменение другого пользователя."
+
+#: users/views.py:35
+msgid "User is successfully created"
+msgstr "Пользователь успешно создан"
+
+#: users/views.py:57
+msgid "User successfully changed"
+msgstr "Пользователь успешно изменен"
+
+#: users/views.py:83
+msgid "User deleted successfully"
+msgstr "Пользователь успешно удален"
+
+#: users/views.py:100
+msgid "You are logged in"
+msgstr "Вы вошли в систему"
+
+#: users/views.py:107
+msgid "You are logged out"
+msgstr "Вы вышли из системы"
+
+#, fuzzy
+#~| msgid "The two password fields didn't match."
+#~ msgid "The entered password is too short."
+#~ msgstr "Два поля пароля не совпадают."
+
+#~ msgid "Enter the same password as above, for verification."
+#~ msgstr "Введите тот же пароль, что и выше, для проверки."
+
+#~ msgid ""
+#~ "Obligatory field. No more than 150 characters. Only letters, numbers and "
+#~ "symbols @/./+/-/_."
+#~ msgstr ""
+#~ "Обязательное поле. Не более 150 символов. Только буквы, цифры и символы "
+#~ "@/./+/-/_."

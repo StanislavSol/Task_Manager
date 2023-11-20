@@ -29,6 +29,8 @@ class CreateUserView(View):
     def post(self, request, *args, **kwargs):
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
+            new_user = user_form.save(commit=False)
+            new_user.set_password(user_form.cleaned_data['password1'])
             user_form.save()
             msg_text = _('User is successfully created')
             messages.success(request, msg_text) 
@@ -36,12 +38,7 @@ class CreateUserView(View):
         return render(request, 'users/create.html', {'form': user_form})
 
 
-class EditUserView(UserRequiredMixin, SuccessMessageMixin, UpdateView):
-    model = User
-    form_class = UserRegistrationForm
-    success_url = reverse_lazy('home_users')
-    success_message = _('User successfully changed')
-
+class EditUserView(UserRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         user_id = kwargs.get('id')
         user = User.objects.get(id=user_id)
