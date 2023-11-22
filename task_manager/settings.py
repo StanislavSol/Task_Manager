@@ -38,8 +38,6 @@ ALLOWED_HOSTS = [
         'webserver',
         ]
 
-#AUTH_USER_MODEL = 'users.User'
-
 
 # Application definition
 
@@ -108,8 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
         {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
         'OPTIONS': {
-                    'min_length': 3,
-                    }
+            'min_length': 3,
+            }
     },
 ]
 

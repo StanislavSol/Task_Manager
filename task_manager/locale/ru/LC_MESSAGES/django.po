@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-20 19:10+0300\n"
+"POT-Creation-Date: 2023-11-22 16:55+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <vandemar@bk.ru>\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -19,13 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
-
 #: templates/components/header.html:5 templates/components/nav.html:10
 #: templates/index.html:14
 msgid "Task manager"
 msgstr "Менеджер задач"
 
-#: templates/components/nav.html:14 templates/users/index.html:6
+#: templates/components/nav.html:14 templates/users/users_list.html:6
 msgid "Users"
 msgstr "Пользователи"
 
@@ -33,12 +32,13 @@ msgstr "Пользователи"
 msgid "Exit"
 msgstr "Выход"
 
-#: templates/components/nav.html:26 templates/users/login.html:6
-#: templates/users/login.html:19
+#: templates/components/nav.html:26 templates/login.html:6
+#: templates/login.html:19
 msgid "Entrance"
 msgstr "Вход"
 
 #: templates/components/nav.html:29 templates/users/create.html:7
+#: templates/users/create.html:11
 msgid "Registration"
 msgstr "Регистрация"
 
@@ -48,19 +48,24 @@ msgid ""
 "change their statuses. Registration and authentication are required to work "
 "with the system."
 msgstr ""
-"Система управления задачами. Позволяет ставить задачи, назначать "
-"исполнителей иизменить свои статусы. Для работы необходима регистрация и "
-"аутентификация с системой."
+"Система управления задачами. Позволяет ставить задачи, назначать исполнителей и"
+"изменить свои статусы. Для работы необходима регистрация и аутентификация"
+"с системой."
 
 #: templates/index.html:17
 msgid "Project page on GitHub"
 msgstr "Страница проекта на GitHub"
 
-#: templates/users/create.html:11
-#, fuzzy
-#| msgid "Registration"
-msgid "Register"
-msgstr "Регистрация"
+#: templates/login.html:14 templates/login.html:15
+#: templates/users/layout_forms.html:24 templates/users/layout_forms.html:29
+#: templates/users/users_list.html:11
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: templates/login.html:17 templates/users/layout_forms.html:40
+#: templates/users/layout_forms.html:44
+msgid "Password"
+msgstr "Пароль"
 
 #: templates/users/delete.html:7
 msgid "Deleting a user"
@@ -72,21 +77,7 @@ msgstr "Вы уверены, что хотите удалить"
 
 #: templates/users/delete.html:11
 msgid "Yes, delete"
-msgstr "Да, удалить"
-
-#: templates/users/index.html:11 templates/users/layout_forms.html:24
-#: templates/users/layout_forms.html:29 templates/users/login.html:14
-#: templates/users/login.html:15
-msgid "Username"
-msgstr "Имя пользователя"
-
-#: templates/users/index.html:12
-msgid "Full username"
-msgstr "Полное имя"
-
-#: templates/users/index.html:13
-msgid "Date of creation"
-msgstr "Дата создания"
+msgstr "Да, уверен"
 
 #: templates/users/layout_forms.html:4 templates/users/layout_forms.html:8
 msgid "Fist name"
@@ -96,13 +87,7 @@ msgstr "Имя"
 msgid "Last name"
 msgstr "Фамилия"
 
-#: templates/users/layout_forms.html:40 templates/users/layout_forms.html:44
-#: templates/users/login.html:17 users/forms.py:24
-msgid "Password"
-msgstr "Пароль"
-
 #: templates/users/layout_forms.html:51 templates/users/layout_forms.html:55
-#: users/forms.py:27
 msgid "Password confirmation"
 msgstr "Подтверждение пароля"
 
@@ -114,66 +99,38 @@ msgstr "Изменение пользователя"
 msgid "Change"
 msgstr "Изменить"
 
-#: users/forms.py:21
-msgid "The two password fields didn't match."
-msgstr "Два поля пароля не совпадают."
+#: templates/users/users_list.html:12
+msgid "Full username"
+msgstr "Полное имя"
 
-#: users/forms.py:22
-#, fuzzy
-#| msgid ""
-#| "The entered password is too short. It must contain at least 3 characters."
-msgid ""
-"The entered password is too short. It must contain at least 3 characters."
-msgstr ""
-"Введенный пароль слишком короткий. Он должен содержать не менее 3 символов."
+#: templates/users/users_list.html:13
+msgid "Date of creation"
+msgstr "Дата создания"
 
-#: users/forms.py:26
-msgid "Your password must contain at least 3 characters."
-msgstr "Ваш пароль должен содержать как минимум 3 символа."
-
-#: users/forms.py:29
-msgid "To confirm, please enter your password again."
-msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
-
-#: users/mixins.py:10
+#: users/mixins.py:13
 msgid "You are not authorized! Please log in."
-msgstr "Вы не авторизованы! Пожалуйста, войдите в систему"
+msgstr "Вы не авторизованы! Пожалуйста, войдите."
 
-#: users/mixins.py:15
+#: users/mixins.py:16
 msgid "You do not have permission to change another user."
 msgstr "У вас нет разрешения на изменение другого пользователя."
 
-#: users/views.py:35
-msgid "User is successfully created"
+#: users/views.py:16
+msgid "User successfully created"
 msgstr "Пользователь успешно создан"
 
-#: users/views.py:57
+#: users/views.py:30
 msgid "User successfully changed"
 msgstr "Пользователь успешно изменен"
 
-#: users/views.py:83
-msgid "User deleted successfully"
+#: users/views.py:38
+msgid "User successfully deleted"
 msgstr "Пользователь успешно удален"
 
-#: users/views.py:100
+#: views.py:11
 msgid "You are logged in"
 msgstr "Вы вошли в систему"
 
-#: users/views.py:107
+#: views.py:16
 msgid "You are logged out"
 msgstr "Вы вышли из системы"
-
-#, fuzzy
-#~| msgid "The two password fields didn't match."
-#~ msgid "The entered password is too short."
-#~ msgstr "Два поля пароля не совпадают."
-
-#~ msgid "Enter the same password as above, for verification."
-#~ msgstr "Введите тот же пароль, что и выше, для проверки."
-
-#~ msgid ""
-#~ "Obligatory field. No more than 150 characters. Only letters, numbers and "
-#~ "symbols @/./+/-/_."
-#~ msgstr ""
-#~ "Обязательное поле. Не более 150 символов. Только буквы, цифры и символы "
-#~ "@/./+/-/_."

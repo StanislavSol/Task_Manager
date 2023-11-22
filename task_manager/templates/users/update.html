@@ -6,9 +6,9 @@
 <div class="container wrapper flex-grow-1">
     <h1 class="my-4">{% translate "Change user" %}</h1>
 
-    <form action={% url 'users_update' user_id %} method="post">
+    <form method="post">
      {% csrf_token %}
-     {% include 'users/layout_forms.html' %}
+    {% bootstrap_form form %}
      <input class="btn btn-primary" type="submit" value="{% translate "Change" %}">
 </form>
 </div>
