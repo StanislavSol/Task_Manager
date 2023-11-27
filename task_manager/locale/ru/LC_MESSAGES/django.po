@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-22 16:55+0300\n"
+"POT-Creation-Date: 2023-11-27 08:39+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,33 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: statuses/delete.html:7 templates/statuses/delete.html:7
+msgid "Deleting a status"
+msgstr "Удаление статуса"
+
+#: statuses/delete.html:8 templates/statuses/delete.html:8
+#: templates/users/delete.html:8
+msgid "Are you sure you want to delete"
+msgstr "Вы уверены, что хотите удалить"
+
+#: statuses/delete.html:11 templates/statuses/delete.html:11
+#: templates/users/delete.html:11
+msgid "Yes, delete"
+msgstr "Да, уверен"
+
+#: statuses/views.py:24
+msgid "Status successfully created"
+msgstr "Статус успешно создан"
+
+#: statuses/views.py:32
+msgid "Status successfully changed"
+msgstr "Статус успешно изменен"
+
+#: statuses/views.py:40
+msgid "Status successfully deleted"
+msgstr "Статус успешно удален"
+
 #: templates/components/header.html:5 templates/components/nav.html:10
 #: templates/index.html:14
 msgid "Task manager"
@@ -28,16 +55,20 @@ msgstr "Менеджер задач"
 msgid "Users"
 msgstr "Пользователи"
 
-#: templates/components/nav.html:20
+#: templates/components/nav.html:20 templates/statuses/statuses_list.html:7
+msgid "Statuses"
+msgstr "Статусы"
+
+#: templates/components/nav.html:23
 msgid "Exit"
 msgstr "Выход"
 
-#: templates/components/nav.html:26 templates/login.html:6
+#: templates/components/nav.html:29 templates/login.html:6
 #: templates/login.html:19
 msgid "Entrance"
 msgstr "Вход"
 
-#: templates/components/nav.html:29 templates/users/create.html:7
+#: templates/components/nav.html:32 templates/users/create.html:7
 #: templates/users/create.html:11
 msgid "Registration"
 msgstr "Регистрация"
@@ -48,9 +79,9 @@ msgid ""
 "change their statuses. Registration and authentication are required to work "
 "with the system."
 msgstr ""
-"Система управления задачами. Позволяет ставить задачи, назначать исполнителей и"
-"изменить свои статусы. Для работы необходима регистрация и аутентификация"
-"с системой."
+"Система управления задачами. Позволяет ставить задачи, назначать "
+"исполнителей иизменить свои статусы. Для работы необходима регистрация и "
+"аутентификацияс системой."
 
 #: templates/index.html:17
 msgid "Project page on GitHub"
@@ -67,17 +98,34 @@ msgstr "Имя пользователя"
 msgid "Password"
 msgstr "Пароль"
 
+#: templates/statuses/create.html:9 templates/statuses/statuses_list.html:8
+msgid "Create status"
+msgstr "Создать статус"
+
+#: templates/statuses/create.html:13
+msgid "Create"
+msgstr "Создать"
+
+#: templates/statuses/statuses_list.html:14
+msgid "Name"
+msgstr "Имя"
+
+#: templates/statuses/statuses_list.html:15 templates/users/users_list.html:13
+msgid "Date of creation"
+msgstr "Дата создания"
+
+#: templates/statuses/update.html:9
+#, fuzzy
+msgid "Change status"
+msgstr "Изменение пользователя"
+
+#: templates/statuses/update.html:13 templates/users/update.html:12
+msgid "Change"
+msgstr "Изменить"
+
 #: templates/users/delete.html:7
 msgid "Deleting a user"
 msgstr "Удаление пользователя"
-
-#: templates/users/delete.html:8
-msgid "Are you sure you want to delete"
-msgstr "Вы уверены, что хотите удалить"
-
-#: templates/users/delete.html:11
-msgid "Yes, delete"
-msgstr "Да, уверен"
 
 #: templates/users/layout_forms.html:4 templates/users/layout_forms.html:8
 msgid "Fist name"
@@ -95,17 +143,9 @@ msgstr "Подтверждение пароля"
 msgid "Change user"
 msgstr "Изменение пользователя"
 
-#: templates/users/update.html:12
-msgid "Change"
-msgstr "Изменить"
-
 #: templates/users/users_list.html:12
 msgid "Full username"
 msgstr "Полное имя"
-
-#: templates/users/users_list.html:13
-msgid "Date of creation"
-msgstr "Дата создания"
 
 #: users/mixins.py:13
 msgid "You are not authorized! Please log in."
