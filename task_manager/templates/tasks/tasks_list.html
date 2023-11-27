@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% block content %}
+
+<div class="container wrapper flex-grow-1">
+      <h1 class="my-4">{% translate "Tasks" %}</h1>
+      <a class="btn btn-primary mb-3" href="{% url 'create_status' %}">{% translate "Create task" %}</a>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>{% translate "Name" %}</th>
+      <th>{% translate "Status" %}</th>
+      <th>{% translate "Author" %}</th>
+      <th>{% translate "Executor" %}</th>
+      <th>{% translate "Date of creation" %}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for task in tasks %}
+      <tr>
+          <td>{{ task.id }}</td>
+          <td>{{ task.name }}</td>
+          <td>{{ task.status }}</td>
+          <td>{{ task.author }}</td>
+          <td>{{ task.executor }}</td>
+          <td>{{ status.date_joined|date:"d.m.Y" }}</td>
+        <td>
+            <a href="/tasks/{{ task.id }}/update/">Изменить</a>
+          <br>
+          <a href="/tasks/{{ task.id }}/delete/">Удалить</a>
+        </td>
+      </tr>
+      {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}      

@@ -23,7 +23,7 @@ class CRUD_Status_Test(TestCase):
 
 
     #READ
-    def test_ListStatuses(self):
+    def test_ListStatus(self):
         user = User.objects.get(id=1)
 
         '''Not authentication'''
@@ -40,7 +40,7 @@ class CRUD_Status_Test(TestCase):
 
     
     #CREATE
-    def test_CreateStatuses(self):
+    def test_CreateStatus(self):
         user = User.objects.get(id=1)
 
         '''Not authentication'''
@@ -62,7 +62,7 @@ class CRUD_Status_Test(TestCase):
 
 
     #UPDATE
-    def test_CreateStatuses(self):
+    def test_CreateStatus(self):
         user = User.objects.get(id=1)
         status = Status.objects.get(id=1)
 
@@ -92,7 +92,7 @@ class CRUD_Status_Test(TestCase):
 
 
     #DELETE
-    def test_DeleteStatuses(self):
+    def test_DeleteStatus(self):
         user = User.objects.get(id=1)
         status = Status.objects.get(id=2)
 
