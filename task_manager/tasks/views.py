@@ -4,10 +4,12 @@ from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 from django.views import View
 from .models import Task
+from .forms import TaskForm
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.detail import DetailView
 
 
 class ListTasks(LoginRequiredMixin, ListView):
@@ -18,6 +20,7 @@ class ListTasks(LoginRequiredMixin, ListView):
 
 class CreateTask(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Task
+    form_class = TaskForm
     template_name = "tasks/create.html"
     success_url = reverse_lazy("tasks")
     success_message = _('Task successfully created')
@@ -29,7 +32,7 @@ class CreateTask(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 class UpdateTask(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Task
-   # form_class = TaskForm
+    form_class = TaskForm
     template_name = "tasks/update.html"
     success_url = reverse_lazy("tasks")
     success_message = _('Task successfully changed')
@@ -43,5 +46,7 @@ class DeleteTask(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     success_message = _('Task successfully deleted')
 
 
-class Task(View):
-    pass
+class Task(DetailView):
+    model = Task
+    context_object_name = 'task'
+    success_url = 'tasks/task_detail.html'
