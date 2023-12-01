@@ -4,7 +4,6 @@ from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 from django.views import View
 from .models import Task
-from .forms import TasksForm
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
@@ -19,17 +18,20 @@ class ListTasks(LoginRequiredMixin, ListView):
 
 class CreateTask(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Task
-    form_class = TaskForm
     template_name = "tasks/create.html"
     success_url = reverse_lazy("tasks")
     success_message = _('Task successfully created')
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
 
 class UpdateTask(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Task
-    form_class = TaskForm
+   # form_class = TaskForm
     template_name = "tasks/update.html"
-    success_url = reverse_lazy("taskss")
+    success_url = reverse_lazy("tasks")
     success_message = _('Task successfully changed')
 
 
