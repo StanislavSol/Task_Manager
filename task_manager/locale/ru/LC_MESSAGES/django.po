@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-27 08:39+0300\n"
+"POT-Creation-Date: 2023-12-02 11:05+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,31 +20,33 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: statuses/delete.html:7 templates/statuses/delete.html:7
-msgid "Deleting a status"
-msgstr "Удаление статуса"
-
-#: statuses/delete.html:8 templates/statuses/delete.html:8
-#: templates/users/delete.html:8
-msgid "Are you sure you want to delete"
-msgstr "Вы уверены, что хотите удалить"
-
-#: statuses/delete.html:11 templates/statuses/delete.html:11
-#: templates/users/delete.html:11
-msgid "Yes, delete"
-msgstr "Да, уверен"
-
-#: statuses/views.py:24
+#: statuses/views.py:25
 msgid "Status successfully created"
 msgstr "Статус успешно создан"
 
-#: statuses/views.py:32
+#: statuses/views.py:33
 msgid "Status successfully changed"
 msgstr "Статус успешно изменен"
 
-#: statuses/views.py:40
+#: statuses/views.py:41
 msgid "Status successfully deleted"
 msgstr "Статус успешно удален"
+
+#: tasks/views.py:35
+#, fuzzy
+#| msgid "Status successfully changed"
+msgid "Task successfully changed"
+msgstr "Статус успешно изменен"
+
+#: tasks/views.py:41
+#, fuzzy
+#| msgid "Status successfully deleted"
+msgid "Task successfully deleted"
+msgstr "Статус успешно удален"
+
+#: tasks/views.py:48
+msgid "Only its author can delete a task"
+msgstr "Удалить задачу может только ее автор"
 
 #: templates/components/header.html:5 templates/components/nav.html:10
 #: templates/index.html:14
@@ -59,16 +61,20 @@ msgstr "Пользователи"
 msgid "Statuses"
 msgstr "Статусы"
 
-#: templates/components/nav.html:23
+#: templates/components/nav.html:23 templates/tasks/tasks_list.html:7
+msgid "Tasks"
+msgstr "Задачи"
+
+#: templates/components/nav.html:26
 msgid "Exit"
 msgstr "Выход"
 
-#: templates/components/nav.html:29 templates/login.html:6
+#: templates/components/nav.html:32 templates/login.html:6
 #: templates/login.html:19
 msgid "Entrance"
 msgstr "Вход"
 
-#: templates/components/nav.html:32 templates/users/create.html:7
+#: templates/components/nav.html:35 templates/users/create.html:7
 #: templates/users/create.html:11
 msgid "Registration"
 msgstr "Регистрация"
@@ -88,13 +94,11 @@ msgid "Project page on GitHub"
 msgstr "Страница проекта на GitHub"
 
 #: templates/login.html:14 templates/login.html:15
-#: templates/users/layout_forms.html:24 templates/users/layout_forms.html:29
 #: templates/users/users_list.html:11
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: templates/login.html:17 templates/users/layout_forms.html:40
-#: templates/users/layout_forms.html:44
+#: templates/login.html:17
 msgid "Password"
 msgstr "Пароль"
 
@@ -102,15 +106,30 @@ msgstr "Пароль"
 msgid "Create status"
 msgstr "Создать статус"
 
-#: templates/statuses/create.html:13
+#: templates/statuses/create.html:13 templates/tasks/create.html:12
 msgid "Create"
 msgstr "Создать"
 
-#: templates/statuses/statuses_list.html:14
+#: templates/statuses/delete.html:7
+msgid "Deleting a status"
+msgstr "Удаление статуса"
+
+#: templates/statuses/delete.html:8 templates/tasks/delete.html:8
+#: templates/users/delete.html:8
+msgid "Are you sure you want to delete"
+msgstr "Вы уверены, что хотите удалить"
+
+#: templates/statuses/delete.html:11 templates/tasks/delete.html:11
+#: templates/users/delete.html:11
+msgid "Yes, delete"
+msgstr "Да, уверен"
+
+#: templates/statuses/statuses_list.html:14 templates/tasks/tasks_list.html:14
 msgid "Name"
 msgstr "Имя"
 
-#: templates/statuses/statuses_list.html:15 templates/users/users_list.html:13
+#: templates/statuses/statuses_list.html:15 templates/tasks/tasks_list.html:18
+#: templates/users/users_list.html:13
 msgid "Date of creation"
 msgstr "Дата создания"
 
@@ -119,25 +138,63 @@ msgstr "Дата создания"
 msgid "Change status"
 msgstr "Изменение пользователя"
 
-#: templates/statuses/update.html:13 templates/users/update.html:12
+#: templates/statuses/update.html:13 templates/tasks/task_detail.html:50
+#: templates/tasks/update.html:12 templates/users/update.html:12
 msgid "Change"
 msgstr "Изменить"
+
+#: templates/tasks/create.html:8 templates/tasks/tasks_list.html:8
+#, fuzzy
+#| msgid "Create status"
+msgid "Create task"
+msgstr "Создать статус"
+
+#: templates/tasks/delete.html:7
+#, fuzzy
+#| msgid "Deleting a status"
+msgid "Deleting a task"
+msgstr "Удаление статуса"
+
+#: templates/tasks/task_detail.html:19 templates/tasks/tasks_list.html:16
+msgid "Author"
+msgstr "Автор"
+
+#: templates/tasks/task_detail.html:23 templates/tasks/tasks_list.html:17
+msgid "Executor"
+msgstr "Исполнитель"
+
+#: templates/tasks/task_detail.html:27 templates/tasks/tasks_list.html:15
+#, fuzzy
+#| msgid "Statuses"
+msgid "Status"
+msgstr "Статусы"
+
+#: templates/tasks/task_detail.html:31
+#, fuzzy
+#| msgid "Create"
+msgid "Created"
+msgstr "Создать"
+
+#: templates/tasks/task_detail.html:36
+msgid "Labels"
+msgstr "Метки"
+
+#: templates/tasks/task_detail.html:43
+msgid "Task without any label"
+msgstr "Задача без метки"
+
+#: templates/tasks/task_detail.html:51
+msgid "Delete"
+msgstr "Удалить"
+
+#: templates/tasks/update.html:8
+#, fuzzy
+msgid "Change task"
+msgstr "Изменение пользователя"
 
 #: templates/users/delete.html:7
 msgid "Deleting a user"
 msgstr "Удаление пользователя"
-
-#: templates/users/layout_forms.html:4 templates/users/layout_forms.html:8
-msgid "Fist name"
-msgstr "Имя"
-
-#: templates/users/layout_forms.html:14 templates/users/layout_forms.html:18
-msgid "Last name"
-msgstr "Фамилия"
-
-#: templates/users/layout_forms.html:51 templates/users/layout_forms.html:55
-msgid "Password confirmation"
-msgstr "Подтверждение пароля"
 
 #: templates/users/update.html:7
 msgid "Change user"
@@ -174,3 +231,12 @@ msgstr "Вы вошли в систему"
 #: views.py:16
 msgid "You are logged out"
 msgstr "Вы вышли из системы"
+
+#~ msgid "Fist name"
+#~ msgstr "Имя"
+
+#~ msgid "Last name"
+#~ msgstr "Фамилия"
+
+#~ msgid "Password confirmation"
+#~ msgstr "Подтверждение пароля"
