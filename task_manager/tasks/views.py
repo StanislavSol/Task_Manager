@@ -13,6 +13,7 @@ from django.views.generic.detail import DetailView
 class TaskMixin(LoginRequiredMixin, SuccessMessageMixin):
     model = Task
     success_url = reverse_lazy("tasks")
+    login_url = 'login'
     fields = ['name', 'description', 'status', 'executor']
 
 
