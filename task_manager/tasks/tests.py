@@ -56,6 +56,7 @@ class CRUD_Task_Test(TestCase):
         user = User.objects.get(id=1)
         status = Status.objects.get(id=1)
 
+
         '''Not authentication'''
         resp = self.client.get(reverse('create_task'))
         self.assertEqual(resp.status_code, 302)
@@ -70,11 +71,10 @@ class CRUD_Task_Test(TestCase):
         resp = self.client.post(
                 reverse('create_task'),
                 {'name': 'Complete the fifth step of the project',
-                 'status': status,
-                 'description': '',
-                 'author': user})
+                 'status': status})
 
         task = Task.objects.get(id=1)
+        task.refresh_from_db()
         tasks = Task.objects.all()
         print(tasks)
                    

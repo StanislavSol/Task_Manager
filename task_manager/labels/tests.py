@@ -1,13 +1,13 @@
 from django.test import TestCase
 from django.urls import reverse
-from .models import Status
+from .models import Lable
 from django.contrib.auth.models import User
 
+# Create your tests here.
+class CRUD_Lable_Test(TestCase):
 
-class CRUD_Status_Test(TestCase):
-    
     @classmethod
-    def setUpTestData(cls):
+    def SetUp(cls):
         '''Create user'''
         User.objects.create(
                 first_name='Rodion',
@@ -15,60 +15,59 @@ class CRUD_Status_Test(TestCase):
                 username='Dostoevsky',
                 password='1866'
                 )
-        '''Create statuses'''
-        Status.objects.create(
-                name='At work')
-        Status.objects.create(
-                name='Сompleted')
 
+        '''Create lable'''
+        Lable.objects.create(
+                name='Urgently')
+        Lable.objects.create(
+                name='Do not rush')
 
     #READ
-    def test_ListStatus(self):
+    def test_ListLables(self):
         user = User.objects.get(id=1)
 
         '''Not authentication'''
-        resp = self.client.get(reverse('statuses'))
+        resp = self.client.get(reverse('lables'))
         self.assertEqual(resp.status_code, 302)
-      #  self.assertIn('login', resp.url)
+       # self.assertIn('login', resp.url)
 
         '''Authentication'''
         self.client.force_login(user)
 
-        resp = self.client.get(reverse('statuses'))
-        self.assertEqual(resp.status_code, 200)
-        self.assertTrue(len(resp.context['statuses']) == 2)
+        resp = self.client.get(reverse('lables'))
+        self.assertEqualt(resp.status_code, 200)
+        self.assertTrue(len(resp.context['lables']) == 2)
 
-    
     #CREATE
-    def test_CreateStatus(self):
+    def test_CreateLable(self):
         user = User.objects.get(id=1)
 
         '''Not authentication'''
-        resp = self.client.get(reverse('create_status'))
+        resp = self.client.get(reverse('create_lable'))
         self.assertEqual(resp.status_code, 302)
       #  self.assertIn('login', resp.url)
 
-        '''Authentication'''
+       '''Authentication'''
         self.client.force_login(user)
-        resp = self.client.get(reverse('create_status'))
+        resp = self.client.get(reverse('create_lable'))
         self.assertEqual(resp.status_code, 200)
-        self.assertTemplateUsed(resp, template_name='statuses/create.html')
+        self.assertTemplateUsed(resp, template_name='lables/create.html')
 
         resp = self.client.post(
-                reverse('create_status'),
-                {'name': 'On testing'})
+                reverse('create_lable'),
+                {'name': 'Control'})
         self.assertEqual(resp.status_code, 302)
-        self.assertRedirects(resp, reverse('statuses'))
+        self.assertRedirects(resp, reverse('lables'))
 
 
     #UPDATE
     def test_CreateStatus(self):
         user = User.objects.get(id=1)
-        status = Status.objects.get(id=1)
+        lable = Lable.objects.get(id=1)
 
         '''Not authentication'''
         resp = self.client.get(
-            reverse('update_status', kwargs={'pk': status.id})
+            reverse('update_lable', kwargs={'pk': status.id})
         )
         self.assertEqual(resp.status_code, 302)
        # self.assertIn('login', resp.url)
@@ -77,44 +76,43 @@ class CRUD_Status_Test(TestCase):
         self.client.force_login(user)
 
         resp = self.client.get(
-            reverse('update_status', kwargs={'pk': status.id})
+            reverse('update_lable', kwargs={'pk': status.id})
         )
         self.assertEqual(resp.status_code, 200)
 
 
         resp = self.client.post(
-            reverse('update_status', kwargs={'pk': status.id}),
-            {'name': 'New'}
+            reverse('update_lable', kwargs={'pk': status.id}),
+            {'name': 'New lable'}
         )
         self.assertEqual(resp.status_code, 302)
         status.refresh_from_db()
-        self.assertEqual(status.name, 'New')
+        self.assertEqual(status.name, 'New lable')
 
 
     #DELETE
     def test_DeleteStatus(self):
         user = User.objects.get(id=1)
-        status = Status.objects.get(id=2)
+        lable = Lable.objects.get(id=2)
 
         '''Not authentication'''
         resp = self.client.get(
-            reverse('delete_status', kwargs={'pk': status.id})
+            reverse('delete_lable', kwargs={'pk': lable.id})
         )
         self.assertEqual(resp.status_code, 302)
-        self.assertIn('login', resp.url)
+       # self.assertIn('login', resp.url)
 
         '''Authentication'''
         self.client.force_login(user)
 
         resp = self.client.get(
-            reverse('delete_status', kwargs={'pk': status.id})
+            reverse('delete_lable', kwargs={'pk': lable.id})
         )
         self.assertEqual(resp.status_code, 200)
 
         resp = self.client.post(
-                reverse('delete_status', kwargs={'pk': status.id})
+                reverse('delete_lable', kwargs={'pk': lable.id})
                 )
-        self.assertRedirects(resp, reverse('statuses'))
+        self.assertRedirects(resp, reverse('lables'))
         self.assertEqual(resp.status_code, 302)
-        self.assertEqual(Status.objects.count(), 1)
-
+        self.assertEqual(Lable.objects.count(), 1)

@@ -21,7 +21,9 @@
                 </div>
                 <div class="row p-1">
                     <div class="col">{% trans 'Executor' %}</div>
+                    {% if task.executor %}
                     <div class="col">{{ task.executor }}</div>
+                    {% endif %}
                 </div>
                 <div class="row p-1">
                     <div class="col">{% trans 'Status' %}</div>
@@ -36,8 +38,8 @@
                         <h6>{% trans 'Labels' %}:</h6>
                         <ul>
                             {% if task.labels.all %}
-                            {% for tl in task.labels.all %}
-                            <li>{{ tl.name }}</li>
+                            {% for lable in task.labels.all %}
+                            <li>{{ lable.name }}</li>
                             {% endfor %}
                             {% else %}
                             <p>{% trans 'Task without any label' %}</p>

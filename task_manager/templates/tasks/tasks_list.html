@@ -27,7 +27,7 @@
           <td>{{ task.status }}</td>
           <td>{{ task.author }}</td>
           <td>{{ task.executor.get_full_name }}</td>
-          <td>{{ task.date_created|date:"d.m.Y" }}</td>
+          <td>{{ task.created_at|date:"d.m.Y" }}</td>
         <td>
             <a href="/tasks/{{ task.id }}/update/">Изменить</a>
           <br>

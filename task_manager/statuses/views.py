@@ -2,40 +2,51 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
-from django.views import View
 from .models import Status
-from .forms import StatusForm
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import ProtectedError
+from django.contrib import messages
 
 
-class ListStatuses(LoginRequiredMixin, ListView):
+class StatusMixin(LoginRequiredMixin, SuccessMessageMixin):
     model = Status
-    template_name = "statuses/statuses_list.html"
-    context_object_name = 'statuses'
-
-
-class CreateStatus(LoginRequiredMixin, SuccessMessageMixin, CreateView):
-    model = Status
-    form_class = StatusForm
-    template_name = "statuses/create.html"
     success_url = reverse_lazy("statuses")
+    context_object_name = 'statuses'
+    login_url = reverse_lazy('login')
+    fields = ['name']
+
+
+class ListStatuses(StatusMixin, ListView):
+    template_name = "statuses/statuses_list.html"
+
+
+class CreateStatus(StatusMixin, CreateView):
+    template_name = "statuses/create.html"
     success_message = _('Status successfully created')
 
 
-class UpdateStatus(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
-    model = Status
-    form_class = StatusForm
+class UpdateStatus(StatusMixin, UpdateView):
     template_name = "statuses/update.html"
-    success_url = reverse_lazy("statuses")
     success_message = _('Status successfully changed')
 
 
-class DeleteStatus(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
-    model = Status
+class DeleteStatus(StatusMixin, DeleteView):
     template_name = "statuses/delete.html"
-    context_object_name = 'status'
-    success_url = reverse_lazy("statuses")
-    success_message = _('Status successfully deleted')
+
+    def post(self, request, *args, **kwargs):
+        try:
+            self.delete(request, *args, **kwargs)
+            messages.success(
+                    self.request,
+                    _('Status successfully deleted')
+                    )
+            return redirect(reverse_lazy('statuses'))
+        except ProtectedError:
+            messages.error(
+                    self.request,
+                    _('Cannot delete status because it is in use')
+                    )
+            return redirect(reverse_lazy('statuses'))
