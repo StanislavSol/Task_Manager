@@ -1,73 +1,73 @@
 from django.test import TestCase
 from django.urls import reverse
-from .models import Lable
+from .models import Label
 from django.contrib.auth.models import User
 
 # Create your tests here.
-class CRUD_Lable_Test(TestCase):
+class CRUD_Label_Test(TestCase):
 
     @classmethod
     def SetUp(cls):
         '''Create user'''
         User.objects.create(
-                first_name='Rodion',
-                last_name='Raskol`nikov',
-                username='Dostoevsky',
-                password='1866'
+                first_name='Pavel',
+                last_name='Chichikov',
+                username='Gogol`',
+                password='1842'
                 )
 
         '''Create lable'''
-        Lable.objects.create(
+        Label.objects.create(
                 name='Urgently')
-        Lable.objects.create(
+        Label.objects.create(
                 name='Do not rush')
 
     #READ
-    def test_ListLables(self):
+    def test_ListLabels(self):
         user = User.objects.get(id=1)
 
         '''Not authentication'''
-        resp = self.client.get(reverse('lables'))
+        resp = self.client.get(reverse('labels'))
         self.assertEqual(resp.status_code, 302)
        # self.assertIn('login', resp.url)
 
         '''Authentication'''
         self.client.force_login(user)
 
-        resp = self.client.get(reverse('lables'))
+        resp = self.client.get(reverse('labels'))
         self.assertEqualt(resp.status_code, 200)
         self.assertTrue(len(resp.context['lables']) == 2)
 
     #CREATE
-    def test_CreateLable(self):
+    def test_CreateLabel(self):
         user = User.objects.get(id=1)
 
         '''Not authentication'''
-        resp = self.client.get(reverse('create_lable'))
+        resp = self.client.get(reverse('create_label'))
         self.assertEqual(resp.status_code, 302)
       #  self.assertIn('login', resp.url)
 
-       '''Authentication'''
+        '''Authentication'''
         self.client.force_login(user)
-        resp = self.client.get(reverse('create_lable'))
+        resp = self.client.get(reverse('create_label'))
         self.assertEqual(resp.status_code, 200)
-        self.assertTemplateUsed(resp, template_name='lables/create.html')
+        self.assertTemplateUsed(resp, template_name='label/create.html')
 
         resp = self.client.post(
-                reverse('create_lable'),
+                reverse('create_label'),
                 {'name': 'Control'})
         self.assertEqual(resp.status_code, 302)
-        self.assertRedirects(resp, reverse('lables'))
+        self.assertRedirects(resp, reverse('labels'))
 
 
     #UPDATE
-    def test_CreateStatus(self):
+    def test_CreateLabel(self):
         user = User.objects.get(id=1)
-        lable = Lable.objects.get(id=1)
+        label = Label.objects.get(id=1)
 
         '''Not authentication'''
         resp = self.client.get(
-            reverse('update_lable', kwargs={'pk': status.id})
+            reverse('update_label', kwargs={'pk': label.id})
         )
         self.assertEqual(resp.status_code, 302)
        # self.assertIn('login', resp.url)
@@ -76,28 +76,28 @@ class CRUD_Lable_Test(TestCase):
         self.client.force_login(user)
 
         resp = self.client.get(
-            reverse('update_lable', kwargs={'pk': status.id})
+            reverse('update_label', kwargs={'pk': label.id})
         )
         self.assertEqual(resp.status_code, 200)
 
 
         resp = self.client.post(
-            reverse('update_lable', kwargs={'pk': status.id}),
-            {'name': 'New lable'}
+            reverse('update_label', kwargs={'pk': label.id}),
+            {'name': 'New label'}
         )
         self.assertEqual(resp.status_code, 302)
         status.refresh_from_db()
-        self.assertEqual(status.name, 'New lable')
+        self.assertEqual(status.name, 'New label')
 
 
     #DELETE
-    def test_DeleteStatus(self):
+    def test_DeleteLabel(self):
         user = User.objects.get(id=1)
-        lable = Lable.objects.get(id=2)
+        label = Label.objects.get(id=2)
 
         '''Not authentication'''
         resp = self.client.get(
-            reverse('delete_lable', kwargs={'pk': lable.id})
+            reverse('delete_label', kwargs={'pk': label.id})
         )
         self.assertEqual(resp.status_code, 302)
        # self.assertIn('login', resp.url)
@@ -106,13 +106,13 @@ class CRUD_Lable_Test(TestCase):
         self.client.force_login(user)
 
         resp = self.client.get(
-            reverse('delete_lable', kwargs={'pk': lable.id})
+            reverse('delete_label', kwargs={'pk': label.id})
         )
         self.assertEqual(resp.status_code, 200)
 
         resp = self.client.post(
-                reverse('delete_lable', kwargs={'pk': lable.id})
+                reverse('delete_label', kwargs={'pk': label.id})
                 )
-        self.assertRedirects(resp, reverse('lables'))
+        self.assertRedirects(resp, reverse('labels'))
         self.assertEqual(resp.status_code, 302)
-        self.assertEqual(Lable.objects.count(), 1)
+        self.assertEqual(Label.objects.count(), 1)

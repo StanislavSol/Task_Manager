@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 class CRUD_Status_Test(TestCase):
-    
+
     @classmethod
     def setUpTestData(cls):
         '''Create user'''

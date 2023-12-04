@@ -5,7 +5,6 @@ from django.urls import reverse
 # Create your tests here.
 class CRUD_Users_Test(TestCase):
 
-
     @classmethod
     def setUpTestData(cls):
         User.objects.create(

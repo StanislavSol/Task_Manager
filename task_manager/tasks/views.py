@@ -8,7 +8,8 @@ from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.detail import DetailView
-
+from .filters import TasksFilter
+from django_filters.views import FilterView
 
 class TaskMixin(LoginRequiredMixin, SuccessMessageMixin):
     model = Task
@@ -17,9 +18,12 @@ class TaskMixin(LoginRequiredMixin, SuccessMessageMixin):
     fields = ['name', 'description', 'status', 'executor', 'labels']
 
 
-class ListTasks(TaskMixin, ListView):
+class ListTasks(TaskMixin, FilterView):
     template_name = "tasks/tasks_list.html"
     context_object_name = 'tasks'
+    filterset_class = TasksFilter
+ #   filter_backends = [DjangoFilterBackend]
+ #   filter_fields = ['status', 'executor', 'lables']
 
 
 class CreateTask(TaskMixin, CreateView):

@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = [
         '*',
@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'task_manager.statuses',
     'task_manager.tasks',
     'task_manager.labels',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 ]
 
 ROOT_URLCONF = 'task_manager.urls'
@@ -87,6 +89,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'task_manager.wsgi.application'
 
+#REST_FRAMEWORK = {
+ #   'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+#}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -143,3 +148,11 @@ LOGIN_URL = 'login/'
 LOGOUT_URL = 'logout/'
 LOGIN_REDIRECT_URL = '/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+ROLLBAR = {
+    'access_token': os.getenv('ROLLBAR_TOKEN'),
+    'environment': 'development' if DEBUG else 'production',
+    'code_version': '1.0',
+    'root': BASE_DIR,
+}

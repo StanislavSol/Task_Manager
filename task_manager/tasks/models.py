@@ -29,7 +29,8 @@ class Task(models.Model):
 
     labels = models.ManyToManyField(
             Label,
-            through='TaskRelationLabel')
+            through='TaskRelationLabel',
+            blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -42,5 +43,4 @@ class TaskRelationLabel(models.Model):
     label = models.ForeignKey(
             Label,
             on_delete=models.PROTECT,
-            blank=True,
             null=True)
