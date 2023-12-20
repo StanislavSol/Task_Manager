@@ -11,6 +11,7 @@ from django.views.generic.detail import DetailView
 from .filters import TasksFilter
 from django_filters.views import FilterView
 
+
 class TaskMixin(LoginRequiredMixin, SuccessMessageMixin):
     model = Task
     success_url = reverse_lazy("tasks")
@@ -22,13 +23,12 @@ class ListTasks(TaskMixin, FilterView):
     template_name = "tasks/tasks_list.html"
     context_object_name = 'tasks'
     filterset_class = TasksFilter
- #   filter_backends = [DjangoFilterBackend]
- #   filter_fields = ['status', 'executor', 'lables']
 
 
 class CreateTask(TaskMixin, CreateView):
     template_name = "tasks/create.html"
     success_url = reverse_lazy("tasks")
+    success_message = _('Task successfully created')
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -37,6 +37,7 @@ class CreateTask(TaskMixin, CreateView):
 
 class UpdateTask(TaskMixin, UpdateView):
     template_name = "tasks/update.html"
+    context_object_name = 'task'
     success_message = _('Task successfully changed')
 
 

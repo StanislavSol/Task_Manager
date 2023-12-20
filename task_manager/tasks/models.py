@@ -1,36 +1,47 @@
 from django.db import models
+from django.contrib.auth.models import User
 from task_manager.statuses.models import Status
 from task_manager.labels.models import Label
-from django.contrib.auth.models import User
+from django.utils.translation import gettext as _
 
 
-# Create your models here
 class Task(models.Model):
-    name = models.CharField(max_length=200, unique=True)
+    name = models.CharField(
+            max_length=200,
+            unique=True,
+            verbose_name=_('Name'))
 
     status = models.ForeignKey(
             Status,
             on_delete=models.PROTECT,
-            related_name='Status')
+            related_name='status',
+            verbose_name=_('Status'))
 
-    description = models.TextField(max_length=500, blank=True, null=True)
+    description = models.TextField(
+            max_length=500,
+            blank=True,
+            null=True,
+            verbose_name=_('Description'))
 
     author = models.ForeignKey(
             User,
             on_delete=models.PROTECT,
-            related_name='Author')
+            related_name='author',
+            verbose_name=_('Author'))
 
     executor = models.ForeignKey(
             User,
             on_delete=models.PROTECT,
-            related_name='Executor',
+            related_name='executor',
+            verbose_name=_('Executor'),
             blank=True,
             null=True)
 
     labels = models.ManyToManyField(
             Label,
             through='TaskRelationLabel',
-            blank=True)
+            blank=True,
+            verbose_name=_('Labels'))
 
     created_at = models.DateTimeField(auto_now_add=True)
 

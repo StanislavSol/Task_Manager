@@ -2,9 +2,8 @@ from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse
 
-# Create your tests here.
-class CRUD_Users_Test(TestCase):
 
+class CRUD_Users_Test(TestCase):
     @classmethod
     def setUpTestData(cls):
         User.objects.create(
