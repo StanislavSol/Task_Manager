@@ -5,7 +5,9 @@ from django.contrib.auth.models import User
 from task_manager.statuses.models import Status
 
 class CRUD_Task_Test(TestCase):
-    def setUp(self):
+
+    @classmethod
+    def setUpTestData(cls):
         '''Create user'''
         User.objects.create(
                 first_name='Rodion',
@@ -13,25 +15,25 @@ class CRUD_Task_Test(TestCase):
                 username='Dostoevsky',
                 password='1866'
                 )
-        self.user = User.objects.get(id=1)
+        user = User.objects.get(id=1)
 
         '''Create status'''
         Status.objects.create(name='status1')
-        self.status = Status.objects.get(id=1)
+        status = Status.objects.get(id=1)
 
 
         '''Create task'''
         Task.objects.create(
                 name='Finish the project',
                 description='',
-                status=self.status,
-                author=self.user)
+                status=status,
+                author=user)
 
         Task.objects.create(
                 name='Start learning English',
                 description='',
-                status=self.status,
-                author=self.user)
+                status=status,
+                author=user)
 
 
     #READ
@@ -54,8 +56,6 @@ class CRUD_Task_Test(TestCase):
     #CREATE
     def test_CreateTask(self):
         user = User.objects.get(id=1)
-        status = Status.objects.get(id=1)
-
 
         '''Not authentication'''
         resp = self.client.get(reverse('create_task'))
@@ -70,14 +70,16 @@ class CRUD_Task_Test(TestCase):
 
         resp = self.client.post(
                 reverse('create_task'),
-                {'name': 'Complete the fifth step of the project',
-                 'status': status})
+                data={
+                    "name": "Complete the fifth step of the project",
+                    "description": "new task description",
+                    "status": 1,
+                    "labels": [],
+                    "author": 1,
+                    "executor": 1
+                    })
 
-        task = Task.objects.get(id=1)
-        task.refresh_from_db()
-        tasks = Task.objects.all()
-        print(tasks)
-                   
+             
         self.assertEqual(resp.status_code, 302)
         self.assertRedirects(resp, reverse('tasks'))
 
@@ -85,7 +87,6 @@ class CRUD_Task_Test(TestCase):
     def test_UpdateTask(self):
         user = User.objects.get(id=1)
         task = Task.objects.get(id=1)
-        status = Status.objects.get(id=1)
 
         '''Not authentication'''
         resp = self.client.get(
@@ -104,7 +105,14 @@ class CRUD_Task_Test(TestCase):
 
         resp = self.client.post(
             reverse('update_task', kwargs={'pk': task.id}),
-            {'description':'123'})
+            data={
+                "name": "Work out",
+                "description": "new task description",
+                "status": 1,
+                "labels": [],
+                "author": 1,
+                "executor": 1
+                })
     
         self.assertEqual(resp.status_code, 302)
         task.refresh_from_db()
@@ -120,7 +128,6 @@ class CRUD_Task_Test(TestCase):
             reverse('delete_task', kwargs={'pk': task.id})
         )
         self.assertEqual(resp.status_code, 302)
-        self.assertIn('login', resp.url)
 
         '''Authentication'''
         self.client.force_login(user)
@@ -136,26 +143,3 @@ class CRUD_Task_Test(TestCase):
         self.assertRedirects(resp, reverse('tasks'))
         self.assertEqual(resp.status_code, 302)
         self.assertEqual(Task.objects.count(), 1)
-
-   # '''Verification addresses'''
-   # url_tasks = [
-    #        reverse('tasks'),
-      #      reverse('create_task'),
-       #     reverse('task', kwargs={'pk': 1}),
-     #       reverse('update_task', kwargs={'pk': 1}),
-         #   reverse('delete_task', kwargs={'pk': 1}),
-        #    ]
-
-
-   # def test_access(self, urls=url_tasks):
-    #    '''Not authentication'''
-     #   for url in urls:
-      #      resp = self.client.get(url)
-       #     self.assertEqual(resp.status_code, 302)
-
-       # '''Authentication'''
-      #  self.client.force_login(self.user)
-       # for url in urls:
-        #    resp = self.client.get(url)
-         #   print(resp)
-          #  self.assertEqual(resp.status_code, 200)

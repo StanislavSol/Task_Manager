@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class CRUD_Label_Test(TestCase):
 
     @classmethod
-    def SetUp(cls):
+    def setUpTestData(cls):
         '''Create user'''
         User.objects.create(
                 first_name='Pavel',
@@ -16,7 +16,7 @@ class CRUD_Label_Test(TestCase):
                 password='1842'
                 )
 
-        '''Create lable'''
+        '''Create lables'''
         Label.objects.create(
                 name='Urgently')
         Label.objects.create(
@@ -29,14 +29,13 @@ class CRUD_Label_Test(TestCase):
         '''Not authentication'''
         resp = self.client.get(reverse('labels'))
         self.assertEqual(resp.status_code, 302)
-       # self.assertIn('login', resp.url)
 
         '''Authentication'''
         self.client.force_login(user)
 
         resp = self.client.get(reverse('labels'))
-        self.assertEqualt(resp.status_code, 200)
-        self.assertTrue(len(resp.context['lables']) == 2)
+        self.assertEqual(resp.status_code, 200)
+        self.assertTrue(len(resp.context['labels']) == 2)
 
     #CREATE
     def test_CreateLabel(self):
@@ -45,13 +44,13 @@ class CRUD_Label_Test(TestCase):
         '''Not authentication'''
         resp = self.client.get(reverse('create_label'))
         self.assertEqual(resp.status_code, 302)
-      #  self.assertIn('login', resp.url)
+        self.assertIn('login', resp.url)
 
         '''Authentication'''
         self.client.force_login(user)
         resp = self.client.get(reverse('create_label'))
         self.assertEqual(resp.status_code, 200)
-        self.assertTemplateUsed(resp, template_name='label/create.html')
+        self.assertTemplateUsed(resp, template_name='labels/create.html')
 
         resp = self.client.post(
                 reverse('create_label'),
@@ -61,7 +60,7 @@ class CRUD_Label_Test(TestCase):
 
 
     #UPDATE
-    def test_CreateLabel(self):
+    def test_UpdateLabel(self):
         user = User.objects.get(id=1)
         label = Label.objects.get(id=1)
 
@@ -70,7 +69,7 @@ class CRUD_Label_Test(TestCase):
             reverse('update_label', kwargs={'pk': label.id})
         )
         self.assertEqual(resp.status_code, 302)
-       # self.assertIn('login', resp.url)
+        self.assertIn('login', resp.url)
 
         '''Authentication'''
         self.client.force_login(user)
@@ -86,8 +85,8 @@ class CRUD_Label_Test(TestCase):
             {'name': 'New label'}
         )
         self.assertEqual(resp.status_code, 302)
-        status.refresh_from_db()
-        self.assertEqual(status.name, 'New label')
+        label.refresh_from_db()
+        self.assertEqual(label.name, 'New label')
 
 
     #DELETE
@@ -100,7 +99,7 @@ class CRUD_Label_Test(TestCase):
             reverse('delete_label', kwargs={'pk': label.id})
         )
         self.assertEqual(resp.status_code, 302)
-       # self.assertIn('login', resp.url)
+        self.assertIn('login', resp.url)
 
         '''Authentication'''
         self.client.force_login(user)

@@ -117,4 +117,3 @@ class CRUD_Status_Test(TestCase):
         self.assertRedirects(resp, reverse('statuses'))
         self.assertEqual(resp.status_code, 302)
         self.assertEqual(Status.objects.count(), 1)
-
