@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-24 18:24+0300\n"
+"POT-Creation-Date: 2023-12-24 18:52+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -285,9 +285,13 @@ msgstr "Пользователь успешно зарегистрирован"
 msgid "User successfully changed"
 msgstr "Пользователь успешно изменен"
 
-#: users/views.py:36
+#: users/views.py:41
 msgid "User successfully deleted"
 msgstr "Пользователь успешно удален"
+
+#: users/views.py:42
+msgid "Cannot delete a user because it is in use"
+msgstr "Невозможно удалить пользователя, потому что он используется"
 
 #: views.py:11
 msgid "You are logged in"

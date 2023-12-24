@@ -3,7 +3,7 @@ from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
-from .mixins import RulesMixin
+from .mixins import RulesMixin, DeleteProtectionMixin
 from .forms import UserCreation, UserChange
 
 
@@ -28,9 +28,15 @@ class UpdateUser(RulesMixin, SuccessMessageMixin, UpdateView):
     success_message = _('User successfully changed')
 
 
-class DeleteUser(RulesMixin, SuccessMessageMixin, DeleteView):
+class DeleteUser(
+        RulesMixin,
+        DeleteProtectionMixin,
+        SuccessMessageMixin,
+        DeleteView):
     model = User
     template_name = "users/delete.html"
     context_object_name = 'user'
     success_url = reverse_lazy("users")
+    protected_url = reverse_lazy('users')
     success_message = _('User successfully deleted')
+    protected_message = _("Cannot delete a user because it is in use")
