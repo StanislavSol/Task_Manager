@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-24 18:04+0300\n"
+"POT-Creation-Date: 2023-12-24 18:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -124,9 +124,8 @@ msgid "Exit"
 msgstr "Выход"
 
 #: templates/components/nav.html:35 templates/login.html:6
-#: templates/login.html:19
 msgid "Entrance"
-msgstr "Войти"
+msgstr "Вход"
 
 #: templates/components/nav.html:38 templates/users/create.html:7
 #: templates/users/create.html:11
@@ -194,6 +193,10 @@ msgstr "Имя пользователя"
 #: templates/login.html:17 users/forms.py:22
 msgid "Password"
 msgstr "Пароль"
+
+#: templates/login.html:19
+msgid "To come in"
+msgstr "Войти"
 
 #: templates/statuses/create.html:9 templates/statuses/statuses_list.html:8
 msgid "Create status"
