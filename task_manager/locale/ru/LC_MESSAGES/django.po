@@ -279,7 +279,7 @@ msgstr "У вас нет разрешения на изменение друго
 
 #: users/views.py:14
 msgid "User successfully created"
-msgstr "Пользователь успешно создан"
+msgstr "Пользователь успешно зарегистрирован"
 
 #: users/views.py:28
 msgid "User successfully changed"
