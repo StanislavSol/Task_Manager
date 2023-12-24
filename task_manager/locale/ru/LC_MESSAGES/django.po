@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-24 18:14+0300\n"
+"POT-Creation-Date: 2023-12-24 18:24+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,7 +128,6 @@ msgid "Entrance"
 msgstr "Вход"
 
 #: templates/components/nav.html:38 templates/users/create.html:7
-#: templates/users/create.html:11
 msgid "Registration"
 msgstr "Регистрация"
 
@@ -237,6 +236,10 @@ msgstr "Показать"
 #: templates/tasks/update.html:8
 msgid "Change task"
 msgstr "Изменение задачи"
+
+#: templates/users/create.html:11
+msgid "Register"
+msgstr "Зарегистрировать"
 
 #: templates/users/delete.html:7
 msgid "Deleting a user"
