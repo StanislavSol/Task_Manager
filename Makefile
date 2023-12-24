@@ -22,9 +22,6 @@ migrate:
 collectstatic:
 	poetry run python manage.py collectstatic
 	
-start:
-	gunicorn task_manager.wsgi:application
-
 test:
 	poetry run ./manage.py test
 

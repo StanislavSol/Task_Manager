@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-20 18:29+0300\n"
+"POT-Creation-Date: 2023-12-24 18:04+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,39 +26,39 @@ msgstr ""
 msgid "Name"
 msgstr "Имя"
 
-#: labels/views.py:28
+#: labels/views.py:26
 msgid "Label successfully created"
 msgstr "Метка успешно создана"
 
-#: labels/views.py:33
+#: labels/views.py:31
 msgid "Label successfully changed"
 msgstr "Метка успешно изменена"
 
-#: labels/views.py:44
+#: labels/views.py:42
 msgid "Label successfully deleted"
 msgstr "Метка успешно удалена"
 
-#: labels/views.py:50
+#: labels/views.py:48
 msgid "Cannot delete label because it is in use"
 msgstr "Невозможно удалить метку, потому что она используется"
 
-#: statuses/views.py:28
+#: statuses/views.py:26
 msgid "Status successfully created"
 msgstr "Статус успешно создан"
 
-#: statuses/views.py:33
+#: statuses/views.py:31
 msgid "Status successfully changed"
 msgstr "Статус успешно изменен"
 
-#: statuses/views.py:44
+#: statuses/views.py:42
 msgid "Status successfully deleted"
 msgstr "Статус успешно удален"
 
-#: statuses/views.py:50
+#: statuses/views.py:48
 msgid "Cannot delete status because it is in use"
 msgstr "Невозможно удалить статус, потому что он используется"
 
-#: tasks/filters.py:20
+#: tasks/filters.py:18
 msgid "Only your tasks"
 msgstr "Только свои задачи"
 
@@ -86,19 +86,19 @@ msgstr "Исполнитель"
 msgid "Labels"
 msgstr "Метки"
 
-#: tasks/views.py:31
+#: tasks/views.py:30
 msgid "Task successfully created"
 msgstr "Задача успешно создана"
 
-#: tasks/views.py:41
+#: tasks/views.py:40
 msgid "Task successfully changed"
 msgstr "Задача успешно изменена"
 
-#: tasks/views.py:47
+#: tasks/views.py:46
 msgid "Task successfully deleted"
 msgstr "Задача успешно удалена"
 
-#: tasks/views.py:54
+#: tasks/views.py:55
 msgid "Only its author can delete a task"
 msgstr "Задачу может удалить только ее автор"
 
@@ -126,7 +126,7 @@ msgstr "Выход"
 #: templates/components/nav.html:35 templates/login.html:6
 #: templates/login.html:19
 msgid "Entrance"
-msgstr "Вход"
+msgstr "Войти"
 
 #: templates/components/nav.html:38 templates/users/create.html:7
 #: templates/users/create.html:11
@@ -263,30 +263,30 @@ msgstr "Для подтверждения введите, пожалуйста, 
 msgid "Passwords don't match"
 msgstr "Введенные пароли не совпадают."
 
-#: users/mixins.py:13
+#: users/mixins.py:15
 msgid "You are not authorized! Please log in."
 msgstr "Вы не авторизованы! Пожалуйста, войдите."
 
-#: users/mixins.py:16
+#: users/mixins.py:21
 msgid "You do not have permission to change another user."
 msgstr "У вас нет разрешения на изменение другого пользователя."
 
-#: users/views.py:16
+#: users/views.py:14
 msgid "User successfully created"
 msgstr "Пользователь успешно создан"
 
-#: users/views.py:30
+#: users/views.py:28
 msgid "User successfully changed"
 msgstr "Пользователь успешно изменен"
 
-#: users/views.py:38
+#: users/views.py:36
 msgid "User successfully deleted"
 msgstr "Пользователь успешно удален"
 
-#: views.py:13
+#: views.py:11
 msgid "You are logged in"
 msgstr "Вы вошли в систему"
 
-#: views.py:18
+#: views.py:16
 msgid "You are logged out"
 msgstr "Вы вышли из системы"
