@@ -166,7 +166,7 @@ msgstr "Вы уверены, что хотите удалить"
 #: templates/labels/delete.html:11 templates/statuses/delete.html:11
 #: templates/tasks/delete.html:11 templates/users/delete.html:11
 msgid "Yes, delete"
-msgstr "Да, уверен"
+msgstr "Да, удалить"
 
 #: templates/labels/labels_list.html:15
 #: templates/statuses/statuses_list.html:15 templates/tasks/tasks_list.html:31
