@@ -21,7 +21,7 @@
       <tr>
           <td>{{ label.id }}</td>
           <td>{{ label.name }}</td>
-          <td>{{ label.created_at|date:"d.m.Y" }}</td>
+          <td>{{ label.created_at|date:"d.m.Y H:i" }}</td>
         <td>
             <a href="/labels/{{ label.id }}/update/">Изменить</a>
           <br>

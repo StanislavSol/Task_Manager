@@ -1,9 +1,8 @@
-from django.shortcuts import render
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 from .models import Task
-from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -51,7 +50,10 @@ class DeleteTask(TaskMixin, DeleteView):
 
     def dispatch(self, request, *args, **kwargs):
         if not self.has_permission():
-            messages.error(self.request, _('Only its author can delete a task'))
+            messages.error(
+                    self.request,
+                    _('Only its author can delete a task')
+                    )
             return redirect('tasks')
         return super().dispatch(request, *args, **kwargs)
 

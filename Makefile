@@ -4,6 +4,9 @@ WEB_CONCURRENCY ?= 4
 install:
 	poetry install
 
+start:
+	poetry run gunicorn -w $(WEB_CONCURRENCY) -b 0.0.0.0:$(PORT) task_manager.wsgi:application
+
 dev:
 	poetry run python manage.py runserver
 
@@ -20,7 +23,11 @@ collectstatic:
 	poetry run python manage.py collectstatic
 	
 start:
-	poetry run gunicorn -w $(WEB_CONCURRENCY) -b 0.0.0.0:$(PORT) task_manager.wsgi:application
+	gunicorn task_manager.wsgi:application
 
 test:
 	poetry run ./manage.py test
+
+
+lint:
+	poetry run flake8

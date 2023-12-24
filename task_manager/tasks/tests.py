@@ -4,6 +4,7 @@ from .models import Task
 from django.contrib.auth.models import User
 from task_manager.statuses.models import Status
 
+
 class CRUD_Task_Test(TestCase):
 
     @classmethod
@@ -21,7 +22,6 @@ class CRUD_Task_Test(TestCase):
         Status.objects.create(name='status1')
         status = Status.objects.get(id=1)
 
-
         '''Create task'''
         Task.objects.create(
                 name='Finish the project',
@@ -35,8 +35,7 @@ class CRUD_Task_Test(TestCase):
                 status=status,
                 author=user)
 
-
-    #READ
+    # READ
     def test_ListTasks(self):
         user = User.objects.get(id=1)
 
@@ -52,8 +51,7 @@ class CRUD_Task_Test(TestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertTrue(len(resp.context['tasks']) == 2)
 
-
-    #CREATE
+    # CREATE
     def test_CreateTask(self):
         user = User.objects.get(id=1)
 
@@ -78,12 +76,10 @@ class CRUD_Task_Test(TestCase):
                     "author": 1,
                     "executor": 1
                     })
-
-             
         self.assertEqual(resp.status_code, 302)
         self.assertRedirects(resp, reverse('tasks'))
 
-    #UPDATE
+    # UPDATE
     def test_UpdateTask(self):
         user = User.objects.get(id=1)
         task = Task.objects.get(id=1)
@@ -113,12 +109,11 @@ class CRUD_Task_Test(TestCase):
                 "author": 1,
                 "executor": 1
                 })
-    
         self.assertEqual(resp.status_code, 302)
         task.refresh_from_db()
         self.assertEqual(task.name, 'Work out')
 
-    #DELETE
+    # DELETE
     def test_DeleteTask(self):
         user = User.objects.get(id=1)
         task = Task.objects.get(id=2)

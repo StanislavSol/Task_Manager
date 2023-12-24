@@ -21,15 +21,13 @@ class CRUD_Status_Test(TestCase):
         Status.objects.create(
                 name='Сompleted')
 
-
-    #READ
+    # READ
     def test_ListStatus(self):
         user = User.objects.get(id=1)
 
         '''Not authentication'''
         resp = self.client.get(reverse('statuses'))
         self.assertEqual(resp.status_code, 302)
-      #  self.assertIn('login', resp.url)
 
         '''Authentication'''
         self.client.force_login(user)
@@ -38,15 +36,13 @@ class CRUD_Status_Test(TestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertTrue(len(resp.context['statuses']) == 2)
 
-    
-    #CREATE
+    # CREATE
     def test_CreateStatus(self):
         user = User.objects.get(id=1)
 
         '''Not authentication'''
         resp = self.client.get(reverse('create_status'))
         self.assertEqual(resp.status_code, 302)
-      #  self.assertIn('login', resp.url)
 
         '''Authentication'''
         self.client.force_login(user)
@@ -60,9 +56,8 @@ class CRUD_Status_Test(TestCase):
         self.assertEqual(resp.status_code, 302)
         self.assertRedirects(resp, reverse('statuses'))
 
-
-    #UPDATE
-    def test_CreateStatus(self):
+    # UPDATE
+    def test_UpdateStatus(self):
         user = User.objects.get(id=1)
         status = Status.objects.get(id=1)
 
@@ -71,7 +66,6 @@ class CRUD_Status_Test(TestCase):
             reverse('update_status', kwargs={'pk': status.id})
         )
         self.assertEqual(resp.status_code, 302)
-       # self.assertIn('login', resp.url)
 
         '''Authentication'''
         self.client.force_login(user)
@@ -80,8 +74,6 @@ class CRUD_Status_Test(TestCase):
             reverse('update_status', kwargs={'pk': status.id})
         )
         self.assertEqual(resp.status_code, 200)
-
-
         resp = self.client.post(
             reverse('update_status', kwargs={'pk': status.id}),
             {'name': 'New'}
@@ -90,8 +82,7 @@ class CRUD_Status_Test(TestCase):
         status.refresh_from_db()
         self.assertEqual(status.name, 'New')
 
-
-    #DELETE
+    # DELETE
     def test_DeleteStatus(self):
         user = User.objects.get(id=1)
         status = Status.objects.get(id=2)

@@ -1,4 +1,4 @@
-from django.test import TestCase, Client
+from django.test import TestCase
 from django.contrib.auth.models import User
 from django.urls import reverse
 
@@ -12,7 +12,6 @@ class CRUD_Users_Test(TestCase):
                 username='Dostoevsky',
                 password='1866'
                 )
-    
         User.objects.create(
                 first_name='Pavel',
                 last_name='Chichikov',
@@ -42,14 +41,12 @@ class CRUD_Users_Test(TestCase):
         user = User.objects.last()
         self.assertEqual(user.username, 'Griboedov')
 
-
-    #READ
+    # READ
     def test_ListUsers(self):
         resp = self.client.get(reverse('users'))
         self.assertTrue(len(resp.context['users']) == 2)
 
-
-    #UPDATE
+    # UPDATE
     def test_UpdateUser(self):
         user = User.objects.get(id=1)
 
@@ -76,7 +73,6 @@ class CRUD_Users_Test(TestCase):
                     'username': 'Pushkin',
                     'password1': '1831',
                     'password2': '1831',
-                    
                 }
             )
 
@@ -84,7 +80,7 @@ class CRUD_Users_Test(TestCase):
         user.refresh_from_db()
         self.assertEqual(user.first_name, 'Boris')
 
-    #DELETE
+    # DELETE
     def test_DeleteUser(self):
         user = User.objects.get(username="Gogol`")
 

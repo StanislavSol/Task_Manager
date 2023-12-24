@@ -3,7 +3,7 @@ from django.urls import reverse
 from .models import Label
 from django.contrib.auth.models import User
 
-# Create your tests here.
+
 class CRUD_Label_Test(TestCase):
 
     @classmethod
@@ -22,7 +22,7 @@ class CRUD_Label_Test(TestCase):
         Label.objects.create(
                 name='Do not rush')
 
-    #READ
+    # READ
     def test_ListLabels(self):
         user = User.objects.get(id=1)
 
@@ -37,7 +37,7 @@ class CRUD_Label_Test(TestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertTrue(len(resp.context['labels']) == 2)
 
-    #CREATE
+    # CREATE
     def test_CreateLabel(self):
         user = User.objects.get(id=1)
 
@@ -58,8 +58,7 @@ class CRUD_Label_Test(TestCase):
         self.assertEqual(resp.status_code, 302)
         self.assertRedirects(resp, reverse('labels'))
 
-
-    #UPDATE
+    # UPDATE
     def test_UpdateLabel(self):
         user = User.objects.get(id=1)
         label = Label.objects.get(id=1)
@@ -78,8 +77,6 @@ class CRUD_Label_Test(TestCase):
             reverse('update_label', kwargs={'pk': label.id})
         )
         self.assertEqual(resp.status_code, 200)
-
-
         resp = self.client.post(
             reverse('update_label', kwargs={'pk': label.id}),
             {'name': 'New label'}
@@ -88,8 +85,7 @@ class CRUD_Label_Test(TestCase):
         label.refresh_from_db()
         self.assertEqual(label.name, 'New label')
 
-
-    #DELETE
+    # DELETE
     def test_DeleteLabel(self):
         user = User.objects.get(id=1)
         label = Label.objects.get(id=2)

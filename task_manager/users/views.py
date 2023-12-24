@@ -1,5 +1,3 @@
-from django.contrib import messages
-from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin

@@ -4,8 +4,6 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import logout
-from django.shortcuts import render
-from django.http import HttpResponse
 
 
 class LogIn(SuccessMessageMixin, LoginView):
