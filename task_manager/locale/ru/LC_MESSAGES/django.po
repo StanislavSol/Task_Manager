@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-24 18:52+0300\n"
+"POT-Creation-Date: 2023-12-25 14:24+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -211,7 +211,7 @@ msgstr "Изменение статуса"
 
 #: templates/tasks/create.html:8 templates/tasks/tasks_list.html:8
 msgid "Create task"
-msgstr "Создание задачи"
+msgstr "Создать задачу"
 
 #: templates/tasks/delete.html:7
 msgid "Deleting a task"
@@ -269,11 +269,11 @@ msgstr "Для подтверждения введите, пожалуйста, 
 msgid "Passwords don't match"
 msgstr "Введенные пароли не совпадают."
 
-#: users/mixins.py:15
+#: users/mixins.py:16
 msgid "You are not authorized! Please log in."
 msgstr "Вы не авторизованы! Пожалуйста, войдите."
 
-#: users/mixins.py:21
+#: users/mixins.py:22
 msgid "You do not have permission to change another user."
 msgstr "У вас нет разрешения на изменение другого пользователя."
 
