@@ -7,41 +7,47 @@ from django.utils.translation import gettext as _
 
 class Task(models.Model):
     name = models.CharField(
-            max_length=200,
-            unique=True,
-            verbose_name=_('Name'))
+        max_length=200,
+        unique=True,
+        verbose_name=_('Name')
+        )
 
     status = models.ForeignKey(
-            Status,
-            on_delete=models.PROTECT,
-            related_name='status',
-            verbose_name=_('Status'))
+        Status,
+        on_delete=models.PROTECT,
+        related_name='status',
+        verbose_name=_('Status')
+        )
 
     description = models.TextField(
-            max_length=500,
-            blank=True,
-            null=True,
-            verbose_name=_('Description'))
+        max_length=500,
+        blank=True,
+        null=True,
+        verbose_name=_('Description')
+        )
 
     author = models.ForeignKey(
-            User,
-            on_delete=models.PROTECT,
-            related_name='author',
-            verbose_name=_('Author'))
+        User,
+        on_delete=models.PROTECT,
+        related_name='author',
+        verbose_name=_('Author')
+        )
 
     executor = models.ForeignKey(
-            User,
-            on_delete=models.PROTECT,
-            related_name='executor',
-            verbose_name=_('Executor'),
-            blank=True,
-            null=True)
+        User,
+        on_delete=models.PROTECT,
+        related_name='executor',
+        verbose_name=_('Executor'),
+        blank=True,
+        null=True
+        )
 
     labels = models.ManyToManyField(
-            Label,
-            through='TaskRelationLabel',
-            blank=True,
-            verbose_name=_('Labels'))
+        Label,
+        through='TaskRelationLabel',
+        blank=True,
+        verbose_name=_('Labels')
+        )
 
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -52,6 +58,7 @@ class Task(models.Model):
 class TaskRelationLabel(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     label = models.ForeignKey(
-            Label,
-            on_delete=models.PROTECT,
-            null=True)
+        Label,
+        on_delete=models.PROTECT,
+        null=True
+        )

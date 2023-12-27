@@ -14,7 +14,7 @@ class UserCreation(UserCreationForm):
             'first_name',
             'last_name',
             'username',
-            ]
+        ]
 
 
 class UserChange(UserChangeForm):

@@ -38,13 +38,13 @@ class DeleteStatus(StatusMixin, DeleteView):
         try:
             self.delete(request, *args, **kwargs)
             messages.success(
-                    self.request,
-                    _('Status successfully deleted')
-                    )
+                self.request,
+                _('Status successfully deleted')
+                )
             return redirect(reverse_lazy('statuses'))
         except ProtectedError:
             messages.error(
-                    self.request,
-                    _('Cannot delete status because it is in use')
-                    )
+                self.request,
+                _('Cannot delete status because it is in use')
+                )
             return redirect(reverse_lazy('statuses'))

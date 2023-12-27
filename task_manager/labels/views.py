@@ -39,12 +39,10 @@ class DeleteLabel(LabelsMixin, DeleteView):
             self.delete(request, *args, **kwargs)
             messages.success(
                     self.request,
-                    _('Label successfully deleted')
-                    )
+                    _('Label successfully deleted'))
             return redirect(reverse_lazy('labels'))
         except ProtectedError:
             messages.error(
                     self.request,
-                    _('Cannot delete label because it is in use')
-                    )
+                    _('Cannot delete label because it is in use'))
             return redirect(reverse_lazy('labels'))

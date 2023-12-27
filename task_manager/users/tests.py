@@ -7,17 +7,17 @@ class CRUD_Users_Test(TestCase):
     @classmethod
     def setUpTestData(cls):
         User.objects.create(
-                first_name='Rodion',
-                last_name='Raskol`nikov',
-                username='Dostoevsky',
-                password='1866'
-                )
+            first_name='Rodion',
+            last_name='Raskol`nikov',
+            username='Dostoevsky',
+            password='1866'
+            )
         User.objects.create(
-                first_name='Pavel',
-                last_name='Chichikov',
-                username='Gogol`',
-                password='1842'
-                )
+            first_name='Pavel',
+            last_name='Chichikov',
+            username='Gogol`',
+            password='1842'
+            )
 
     # CREATE
     def test_CreateUser(self):
@@ -33,7 +33,7 @@ class CRUD_Users_Test(TestCase):
                     'username': 'Griboedov',
                     'password1': '1825',
                     'password2': '1825'
-                    }
+                }
                 )
         self.assertEqual(resp.status_code, 302)
         self.assertRedirects(resp, reverse('login'))
@@ -61,12 +61,17 @@ class CRUD_Users_Test(TestCase):
         self.client.force_login(user)
 
         resp = self.client.get(
-                reverse('update_user', kwargs={'pk': user.id})
-        )
+                reverse(
+                    'update_user',
+                    kwargs={'pk': user.id}
+                    )
+                )
         self.assertEqual(resp.status_code, 200)
 
         resp = self.client.post(
-                reverse('update_user', kwargs={'pk': user.id}),
+                reverse(
+                    'update_user',
+                    kwargs={'pk': user.id}),
                 {
                     'first_name': 'Boris',
                     'last_name': 'Godunov',
@@ -74,7 +79,7 @@ class CRUD_Users_Test(TestCase):
                     'password1': '1831',
                     'password2': '1831',
                 }
-            )
+                )
 
         self.assertEqual(resp.status_code, 302)
         user.refresh_from_db()
@@ -95,13 +100,19 @@ class CRUD_Users_Test(TestCase):
         '''Authentification'''
         self.client.force_login(user)
         resp = self.client.get(
-                reverse('delete_user', kwargs={'pk': user.id})
-        )
+                reverse(
+                    'delete_user',
+                    kwargs={'pk': user.id}
+                    )
+                )
         self.assertEqual(resp.status_code, 200)
 
         resp = self.client.post(
-                reverse('delete_user', kwargs={'pk': user.id})
-        )
+                reverse(
+                    'delete_user',
+                    kwargs={'pk': user.id}
+                    )
+                )
 
         self.assertRedirects(resp, reverse('users'))
         self.assertEqual(resp.status_code, 302)

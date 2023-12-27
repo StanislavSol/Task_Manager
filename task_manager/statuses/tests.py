@@ -10,16 +10,14 @@ class CRUD_Status_Test(TestCase):
     def setUpTestData(cls):
         '''Create user'''
         User.objects.create(
-                first_name='Rodion',
-                last_name='Raskol`nikov',
-                username='Dostoevsky',
-                password='1866'
-                )
+            first_name='Rodion',
+            last_name='Raskol`nikov',
+            username='Dostoevsky',
+            password='1866'
+        )
         '''Create statuses'''
-        Status.objects.create(
-                name='At work')
-        Status.objects.create(
-                name='Сompleted')
+        Status.objects.create(name='At work')
+        Status.objects.create(name='Сompleted')
 
     # READ
     def test_ListStatus(self):
@@ -51,8 +49,9 @@ class CRUD_Status_Test(TestCase):
         self.assertTemplateUsed(resp, template_name='statuses/create.html')
 
         resp = self.client.post(
-                reverse('create_status'),
-                {'name': 'On testing'})
+            reverse('create_status'),
+            {'name': 'On testing'}
+        )
         self.assertEqual(resp.status_code, 302)
         self.assertRedirects(resp, reverse('statuses'))
 
@@ -97,14 +96,19 @@ class CRUD_Status_Test(TestCase):
         '''Authentication'''
         self.client.force_login(user)
 
-        resp = self.client.get(
-            reverse('delete_status', kwargs={'pk': status.id})
+        resp = self.client.get(reverse(
+            'delete_status',
+            kwargs={'pk': status.id}
+            )
         )
         self.assertEqual(resp.status_code, 200)
 
-        resp = self.client.post(
-                reverse('delete_status', kwargs={'pk': status.id})
-                )
+        resp = self.client.post(reverse(
+            'delete_status',
+            kwargs={'pk': status.id}
+            )
+        )
+
         self.assertRedirects(resp, reverse('statuses'))
         self.assertEqual(resp.status_code, 302)
         self.assertEqual(Status.objects.count(), 1)

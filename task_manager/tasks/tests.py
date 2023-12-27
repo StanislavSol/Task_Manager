@@ -11,11 +11,11 @@ class CRUD_Task_Test(TestCase):
     def setUpTestData(cls):
         '''Create user'''
         User.objects.create(
-                first_name='Rodion',
-                last_name='Raskol`nikov',
-                username='Dostoevsky',
-                password='1866'
-                )
+            first_name='Rodion',
+            last_name='Raskol`nikov',
+            username='Dostoevsky',
+            password='1866'
+            )
         user = User.objects.get(id=1)
 
         '''Create status'''
@@ -24,16 +24,18 @@ class CRUD_Task_Test(TestCase):
 
         '''Create task'''
         Task.objects.create(
-                name='Finish the project',
-                description='',
-                status=status,
-                author=user)
+            name='Finish the project',
+            description='',
+            status=status,
+            author=user
+            )
 
         Task.objects.create(
-                name='Start learning English',
-                description='',
-                status=status,
-                author=user)
+            name='Start learning English',
+            description='',
+            status=status,
+            author=user
+            )
 
     # READ
     def test_ListTasks(self):
@@ -67,15 +69,16 @@ class CRUD_Task_Test(TestCase):
         self.assertTemplateUsed(resp, template_name='tasks/create.html')
 
         resp = self.client.post(
-                reverse('create_task'),
-                data={
-                    "name": "Complete the fifth step of the project",
-                    "description": "new task description",
-                    "status": 1,
-                    "labels": [],
-                    "author": 1,
-                    "executor": 1
-                    })
+            reverse('create_task'),
+            data={
+                "name": "Complete the fifth step of the project",
+                "description": "new task description",
+                "status": 1,
+                "labels": [],
+                "author": 1,
+                "executor": 1
+                }
+            )
         self.assertEqual(resp.status_code, 302)
         self.assertRedirects(resp, reverse('tasks'))
 
@@ -108,7 +111,8 @@ class CRUD_Task_Test(TestCase):
                 "labels": [],
                 "author": 1,
                 "executor": 1
-                })
+                }
+            )
         self.assertEqual(resp.status_code, 302)
         task.refresh_from_db()
         self.assertEqual(task.name, 'Work out')
@@ -128,13 +132,19 @@ class CRUD_Task_Test(TestCase):
         self.client.force_login(user)
 
         resp = self.client.get(
-            reverse('delete_task', kwargs={'pk': task.id})
-        )
+            reverse(
+                'delete_task',
+                kwargs={'pk': task.id}
+                )
+            )
         self.assertEqual(resp.status_code, 200)
 
         resp = self.client.post(
-                reverse('delete_task', kwargs={'pk': task.id})
+            reverse(
+                'delete_task',
+                kwargs={'pk': task.id}
                 )
+            )
         self.assertRedirects(resp, reverse('tasks'))
         self.assertEqual(resp.status_code, 302)
         self.assertEqual(Task.objects.count(), 1)

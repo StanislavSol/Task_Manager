@@ -18,12 +18,14 @@ class TasksFilter(django_filters.FilterSet):
         label=_('Only your tasks'),
     )
     labels = django_filters.ModelChoiceFilter(
-            queryset=Label.objects.all(),
-            label=_('Label'),
-            widget=forms.Select(
-                attrs={
-                    'class': 'form-select'
-                    }))
+        queryset=Label.objects.all(),
+        label=_('Label'),
+        widget=forms.Select(
+            attrs={
+                'class': 'form-select'
+                }
+            )
+        )
 
     class Meta:
         model = Task

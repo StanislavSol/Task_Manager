@@ -10,17 +10,15 @@ class CRUD_Label_Test(TestCase):
     def setUpTestData(cls):
         '''Create user'''
         User.objects.create(
-                first_name='Pavel',
-                last_name='Chichikov',
-                username='Gogol`',
-                password='1842'
-                )
+                    first_name='Pavel',
+                    last_name='Chichikov',
+                    username='Gogol`',
+                    password='1842'
+                    )
 
         '''Create lables'''
-        Label.objects.create(
-                name='Urgently')
-        Label.objects.create(
-                name='Do not rush')
+        Label.objects.create(name='Urgently')
+        Label.objects.create(name='Do not rush')
 
     # READ
     def test_ListLabels(self):
@@ -52,9 +50,7 @@ class CRUD_Label_Test(TestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertTemplateUsed(resp, template_name='labels/create.html')
 
-        resp = self.client.post(
-                reverse('create_label'),
-                {'name': 'Control'})
+        resp = self.client.post(reverse('create_label'), {'name': 'Control'})
         self.assertEqual(resp.status_code, 302)
         self.assertRedirects(resp, reverse('labels'))
 
@@ -105,9 +101,9 @@ class CRUD_Label_Test(TestCase):
         )
         self.assertEqual(resp.status_code, 200)
 
-        resp = self.client.post(
-                reverse('delete_label', kwargs={'pk': label.id})
-                )
+        resp = self.client.post(reverse(
+            'delete_label',
+            kwargs={'pk': label.id}))
         self.assertRedirects(resp, reverse('labels'))
         self.assertEqual(resp.status_code, 302)
         self.assertEqual(Label.objects.count(), 1)
