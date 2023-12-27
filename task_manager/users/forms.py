@@ -1,7 +1,9 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from django.contrib.auth.models import User
+from task_manager.users.models import User
 from django import forms
 from django.utils.translation import gettext_lazy as _
+
+
 PASS_WIDGET = forms.PasswordInput()
 
 
@@ -39,7 +41,6 @@ class UserChange(UserChangeForm):
             'password2',
         )
 
-    # method from BaseUserCreationForm
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")

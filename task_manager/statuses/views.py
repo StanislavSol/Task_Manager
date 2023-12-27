@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
-from .models import Status
+from task_manager.statuses.models import Status
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin

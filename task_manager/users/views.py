@@ -2,9 +2,9 @@ from django.utils.translation import gettext as _
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from django.contrib.auth.models import User
-from .mixins import RulesMixin, DeleteProtectionMixin
-from .forms import UserCreation, UserChange
+from task_manager.users.models import User
+from task_manager.users.mixins import RulesMixin, DeleteProtectionMixin
+from task_manager.users.forms import UserCreation, UserChange
 
 
 class CreateUser(SuccessMessageMixin, CreateView):
