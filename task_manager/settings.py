@@ -34,8 +34,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'True'
 
 ALLOWED_HOSTS = [
-        '*',
-        'webserver',
+    '*',
+    'webserver',
 ]
 
 
@@ -119,7 +119,7 @@ else:
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-        'OPTIONS': {'min_length': 3,}
+        'OPTIONS': {'min_length': 3}
     },
 ]
 

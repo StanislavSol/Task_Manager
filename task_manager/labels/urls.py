@@ -7,8 +7,8 @@ urlpatterns = [
     path('create/', views.CreateLabel.as_view(), name='create_label'),
     path(
         '<int:pk>/update/',
-         views.UpdateLabel.as_view(),
-         name='update_label'
+        views.UpdateLabel.as_view(),
+        name='update_label'
     ),
     path(
         '<int:pk>/delete/',

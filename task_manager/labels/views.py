@@ -39,7 +39,7 @@ class DeleteLabel(LabelsMixin, DeleteView):
             self.delete(request, *args, **kwargs)
             messages.success(
                 self.request,
-               _('Label successfully deleted')
+                _('Label successfully deleted')
             )
             return redirect(reverse_lazy('labels'))
         except ProtectedError:

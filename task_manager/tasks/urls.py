@@ -13,7 +13,7 @@ urlpatterns = [
     ),
     path(
         '<int:pk>/delete/',
-         views.DeleteTask.as_view(),
+        views.DeleteTask.as_view(),
         name='delete_task'
     ),
 ]
