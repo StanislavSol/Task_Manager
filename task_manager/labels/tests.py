@@ -3,6 +3,7 @@ from django.urls import reverse
 from task_manager.labels.models import Label
 from task_manager.users.models import User
 
+
 class CRUD_Label_Test(TestCase):
 
     @classmethod

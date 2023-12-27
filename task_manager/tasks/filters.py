@@ -1,5 +1,5 @@
 import django_filters
-from .models import Task
+from task_manager.tasks.models import Task
 from django import forms
 from task_manager.labels.models import Label
 from django.utils.translation import gettext_lazy as _
@@ -19,6 +19,7 @@ class TasksFilter(django_filters.FilterSet):
     )
     labels = django_filters.ModelChoiceFilter(
             queryset=Label.objects.all(),
+            label=_('Label'),
             widget=forms.Select(
                 attrs={
                     'class': 'form-select'

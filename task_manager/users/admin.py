@@ -1,7 +1,7 @@
 from django.contrib import admin
 from task_manager.users.models import User
 
-# Register your models here.
+
 class UserAdmin(admin.ModelAdmin):
     list_display = ('username', 'date_joined')
     search_user = ['username', 'first_name', 'last_name']
