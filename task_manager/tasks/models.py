@@ -10,28 +10,28 @@ class Task(models.Model):
         max_length=200,
         unique=True,
         verbose_name=_('Name')
-        )
+    )
 
     status = models.ForeignKey(
         Status,
         on_delete=models.PROTECT,
         related_name='status',
         verbose_name=_('Status')
-        )
+    )
 
     description = models.TextField(
         max_length=500,
         blank=True,
         null=True,
         verbose_name=_('Description')
-        )
+    )
 
     author = models.ForeignKey(
         User,
         on_delete=models.PROTECT,
         related_name='author',
         verbose_name=_('Author')
-        )
+    )
 
     executor = models.ForeignKey(
         User,
@@ -40,14 +40,14 @@ class Task(models.Model):
         verbose_name=_('Executor'),
         blank=True,
         null=True
-        )
+    )
 
     labels = models.ManyToManyField(
         Label,
         through='TaskRelationLabel',
         blank=True,
         verbose_name=_('Labels')
-        )
+    )
 
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -61,4 +61,4 @@ class TaskRelationLabel(models.Model):
         Label,
         on_delete=models.PROTECT,
         null=True
-        )
+    )

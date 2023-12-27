@@ -96,16 +96,18 @@ class CRUD_Status_Test(TestCase):
         '''Authentication'''
         self.client.force_login(user)
 
-        resp = self.client.get(reverse(
-            'delete_status',
-            kwargs={'pk': status.id}
+        resp = self.client.get(
+            reverse(
+                'delete_status',
+                kwargs={'pk': status.id}
             )
         )
         self.assertEqual(resp.status_code, 200)
 
-        resp = self.client.post(reverse(
-            'delete_status',
-            kwargs={'pk': status.id}
+        resp = self.client.pos(
+            reverse(
+                'delete_status',
+                kwargs={'pk': status.id}
             )
         )
 

@@ -14,13 +14,13 @@ class RulesMixin(AccessMixin):
             messages.error(
                 self.request,
                 _('You are not authorized! Please log in.')
-                )
+            )
             return redirect('login')
         elif not self.has_permission():
             messages.error(
                 self.request,
                 _('You do not have permission to change another user.')
-                )
+            )
             return redirect('users')
         return super().dispatch(request, *args, **kwargs)
 

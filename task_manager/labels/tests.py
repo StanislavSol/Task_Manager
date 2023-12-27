@@ -10,11 +10,11 @@ class CRUD_Label_Test(TestCase):
     def setUpTestData(cls):
         '''Create user'''
         User.objects.create(
-                    first_name='Pavel',
-                    last_name='Chichikov',
-                    username='Gogol`',
-                    password='1842'
-                    )
+            first_name='Pavel',
+            last_name='Chichikov',
+            username='Gogol`',
+            password='1842'
+        )
 
         '''Create lables'''
         Label.objects.create(name='Urgently')

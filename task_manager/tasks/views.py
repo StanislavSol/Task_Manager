@@ -53,7 +53,7 @@ class DeleteTask(TaskMixin, DeleteView):
             messages.error(
                 self.request,
                 _('Only its author can delete a task')
-                )
+            )
             return redirect('tasks')
         return super().dispatch(request, *args, **kwargs)
 

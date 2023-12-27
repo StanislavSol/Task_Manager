@@ -34,9 +34,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'True'
 
 ALLOWED_HOSTS = [
-    '*',
-    'webserver',
-    ]
+        '*',
+        'webserver',
+]
 
 
 AUTH_USER_MODEL = 'users.User'
@@ -119,11 +119,9 @@ else:
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-        'OPTIONS': {
-            'min_length': 3,
-            }
-        },
-    ]
+        'OPTIONS': {'min_length': 3,}
+    },
+]
 
 
 # Internationalization
@@ -132,9 +130,9 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'ru-RU'
 
 LANGUAGES = (
-        ('en', 'English'),
-        ('ru', 'Russian'),
-        )
+    ('en', 'English'),
+    ('ru', 'Russian'),
+)
 
 TIME_ZONE = 'UTC'
 

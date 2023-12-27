@@ -15,7 +15,7 @@ class CRUD_Task_Test(TestCase):
             last_name='Raskol`nikov',
             username='Dostoevsky',
             password='1866'
-            )
+        )
         user = User.objects.get(id=1)
 
         '''Create status'''
@@ -28,14 +28,14 @@ class CRUD_Task_Test(TestCase):
             description='',
             status=status,
             author=user
-            )
+        )
 
         Task.objects.create(
             name='Start learning English',
             description='',
             status=status,
             author=user
-            )
+        )
 
     # READ
     def test_ListTasks(self):
@@ -77,8 +77,8 @@ class CRUD_Task_Test(TestCase):
                 "labels": [],
                 "author": 1,
                 "executor": 1
-                }
-            )
+            }
+        )
         self.assertEqual(resp.status_code, 302)
         self.assertRedirects(resp, reverse('tasks'))
 
@@ -111,8 +111,8 @@ class CRUD_Task_Test(TestCase):
                 "labels": [],
                 "author": 1,
                 "executor": 1
-                }
-            )
+            }
+        )
         self.assertEqual(resp.status_code, 302)
         task.refresh_from_db()
         self.assertEqual(task.name, 'Work out')
@@ -135,16 +135,16 @@ class CRUD_Task_Test(TestCase):
             reverse(
                 'delete_task',
                 kwargs={'pk': task.id}
-                )
             )
+        )
         self.assertEqual(resp.status_code, 200)
 
         resp = self.client.post(
             reverse(
                 'delete_task',
                 kwargs={'pk': task.id}
-                )
             )
+        )
         self.assertRedirects(resp, reverse('tasks'))
         self.assertEqual(resp.status_code, 302)
         self.assertEqual(Task.objects.count(), 1)

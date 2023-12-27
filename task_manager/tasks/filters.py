@@ -21,11 +21,9 @@ class TasksFilter(django_filters.FilterSet):
         queryset=Label.objects.all(),
         label=_('Label'),
         widget=forms.Select(
-            attrs={
-                'class': 'form-select'
-                }
-            )
+            attrs={'class': 'form-select'}
         )
+    )
 
     class Meta:
         model = Task
