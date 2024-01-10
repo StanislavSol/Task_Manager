@@ -25,6 +25,7 @@ class CRUD_Users_Test(TestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertTemplateUsed(resp, template_name='users/create.html')
 
+        # Passwords match
         resp = self.client.post(
             reverse('create_user'),
             {
@@ -40,6 +41,19 @@ class CRUD_Users_Test(TestCase):
 
         user = User.objects.last()
         self.assertEqual(user.username, 'Griboedov')
+
+        # Password mismatch
+        resp = self.client.post(
+            reverse('create_user'),
+            {
+                'first_name': 'Bazarov',
+                'last_name': 'Eugene',
+                'username': 'Turgenev',
+                'password1': '1862',
+                'password2': '1854'
+            }
+        )
+        self.assertEqual(resp.status_code, 200)
 
     # READ
     def test_ListUsers(self):

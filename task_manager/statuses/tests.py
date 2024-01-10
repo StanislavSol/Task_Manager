@@ -104,7 +104,7 @@ class CRUD_Status_Test(TestCase):
         )
         self.assertEqual(resp.status_code, 200)
 
-        resp = self.client.pos(
+        resp = self.client.post(
             reverse(
                 'delete_status',
                 kwargs={'pk': status.id}
