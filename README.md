@@ -41,6 +41,6 @@ make start
 ```
 2. Run the server locally in development mode with the debugger active:
 ```
-make dev
+make dev 
 
 ```
