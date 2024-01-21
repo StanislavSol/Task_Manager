@@ -11,7 +11,7 @@ To install and run the project, you will need Python version 3.10 and above, the
 ## Install
 1. Clone the project repository to your local device:
 ```
-git clone git@github.com:StanislavSol/python-project-52.git
+git clone git@github.com:StanislavSol/Task_Manager.git
 
 ```
 2. Go to the project directory and install dependencies using Poetry:
