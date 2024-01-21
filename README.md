@@ -16,7 +16,7 @@ git clone git@github.com:StanislavSol/Task_Manager.git
 ```
 2. Go to the project directory and install dependencies using Poetry:
 ```
-cd python-project-52 && make install
+cd Task_Manager && make install
 
 ```
 3. Create a .env file that will contain your sensitive settings:
